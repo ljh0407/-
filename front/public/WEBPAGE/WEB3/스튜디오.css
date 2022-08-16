@@ -5,6 +5,7 @@
 a{ text-decoration: none; color: black; }
 a:hover { order: #eeeeee; }
 li{ list-style-type: none; }
+
 /* ------------------------ 헤더 ----------------------------*/
 #header{ height: 100px; }
 .box{ width: 1200px; margin: 0 auto; position: relative; }
