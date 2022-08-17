@@ -3,7 +3,7 @@
 /* 구역별로 비율 설정 힘듦 -> 기준[그리드]*/
 
 [class*="col_"]{float: left;}
-/* ["class 이름이 col_"]{ float: left;}
+/* ["class 이름이 col_"]{ float: left;}*/
 
 .col_1{ width: 8.33% }  /* 1그리드 사용*/
 .col_2{ width: 16.66% }	/* 2그리드 사용*/
