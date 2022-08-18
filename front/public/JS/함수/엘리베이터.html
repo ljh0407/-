@@ -9,16 +9,46 @@
 </head>
 <body>
 	
-	<div id="state_display">
-		<div id="state_Elevator"> 현재 엘리베이터 층수 : 5 층 </div>
-		<div id="state_mine"> 내 층수 : 2 층</div> 
-	</div>
+	 <div id="building">
+		 <div id="elevator_Body">
+		  <div id="elevator">사람을 태울수 있습니다.</div>
+		 
+		 
+		 
+		 
+		 
+		 
+		 </div>
+	 
+	 
+	 
+	 
+		 <div id="building_Body">
+		  <div id="five_floor">5층입니다.</div>
+		  <div id="four_floor">4층입니다.</div>
+		  <div id="three_floor">3층입니다.</div>
+		  <div id="two_floor">2층입니다.</div>
+		  <div id="one_floor">1층입니다.</div>
+		 
+		 </div>
 	
-	<div id="button_display">  
-		<button id="button_up" onclick="upbutton()">상승</button>
-		<button id="button-down" onclick="downbutton()">하강</button>
+	
+	
 	</div>
 
+ <div id="state">
+	 <div id="State_display">
+		 	<div id="State_Elevator">엘리베이터 층수 : 5 </div>
+		 	<div id="State_Mine">내 층수 : 2 </div>
+	 </div>
+	 <div id="Button_Display">
+			 <button  onclick="up_button()" id="UpButton">위로가기 버튼</button>
+			 <button  onclick="down_button()" id="DownButton">아래로 가기 버튼</button>
+	 </div>  
+ </div>
+	 <script type="text/javascript" src="Elevator.js"></script>
+	 
+	 
 <script src="엘리베이터.js"></script>
 </body>
 </html>
