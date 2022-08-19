@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+.container{height: 100vh ;
+		   overflow: auto;
+		   scroll-snap-type: y mandatory;
+		   color: white;
+		   text-align: center ;
+		   text-align: center;
+		   font-family: 'DynaPuff', cursive;
+	       
+		   
+		    
+}
+.area1{ background-image: url("img/그레이맨.jpg");
+		height: 100vh;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		scroll-snap-align : start;
+		width: 900px;
+		}
+#title{
+	text-align: center;
+	font-family: 'DynaPuff', cursive;
+	font-size: 3rem;
+	padding-top: 300px;
+
+	}
+p{font-size: 1rem;
+   margin-top: 50px;
+   border: 30px;}	
+.area2{
+	background-image:url("img/그레이맨2.jpg");
+	text-align:right;
+	height: 100vh ; 
+	background-size: cover;
+	background-position: center ;
+	background-repeat: no-repeat;
+	scroll-snap-align : start;
+	width: 900px ;
+	color: white;
+	padding-top: 400px;
+	font-size: 3rem;
+	
+	
+}
+p{
+	font-size: 2rem;
+}
+.area3{
+	background-image: url("img/독점.jpg");
+	width: 900px;
+	background-size: cover;
+	background-position: center ;
+	background-repeat: no-repeat;
+	scroll-snap-align : start;
+	color: white;
+	height: 100vh;
+	text-align: center;
+	
+}	
+.area3.h1{
+	padding-top: 500px;
+}
+#end{
+	text-align: center;
+	font-family: 'DynaPuff', cursive;
+	font-size: 3rem;
+	
+	
+}
+#end_text{
+	padding-top: 60px;
+}
+	
+	
+
+	
+
+

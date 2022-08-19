@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+body{
+	background-image: url("img/빵2.png") , url("img/빵3.png");
+	background-position:  left top , right top ;
+					    /* 첫번째 이미지  두번쨰 이미지 */
+	background-repeat: no-repeat; /* 자동 채우기 제거 */
+	text-align: center;
+	
+}
