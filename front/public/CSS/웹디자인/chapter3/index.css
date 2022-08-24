@@ -1,5 +1,40 @@
 @charset "UTF-8";
 
+/*-------------- 헤더 --------------*/
+
+body{
+	color: #949087;
+	font-family: '굴림';
+	background-image: url("img/배경.png");
+}
+header{
+	max-width: 1000px;
+	margin: 2.5rem auto 0 ;
+	background-image: url("img/header.svg"); 
+	background-repeat: no-repeat;	/* 자동 채우기 제거 */
+	background-position: center top; /* 배경위치 */
+	background-size: cover;
+	height: 170px;
+}	
+.page_title{
+	font-size: 35px; font-family: '굴림'; text-align: center;
+	margin-top: 50px 0px;
+}
+
+.page_desc{
+	font-size: 15px; text-align: center;
+	margin-top: 10px;
+}
+
+/* ------------------ container ---------------*/
+.container{
+	max-width: 1000px;
+	margin: 0 auto;
+	background-color: #fff;
+	border-radius: 0 0 10px 10px;
+}
+
+/* ----------------------------------*/
 .post_title{
 	padding-bottom: 10px; 		/* 아래 안쪽 여백 */
 	

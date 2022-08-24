@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.main_menu{
+	display: flex; /* 하위 태그들이 가로 배치 */
+	justify-content:center;    /* flex 가로 정렬 */
+}
+.main_menu a{
+	padding: 1rem;
+	margin: 1rem;
+}
+/* 메뉴 */
+.has_menu{
+	position: relative;
+}
+.sub_manu{
+	position: absolute;
+	display: none; /* 숨기기 */
+	/* display: inline inline-block block flex none */
+	top: 2rem;
+	left: 1rem;
+}
+.sub_manu a{
+	margin: 1px; width: 180px;
+}
+.main_menu:hover .sub_manu{ /* 해당메뉴에 마우스를 올렸을때 */
+	display: block;
+}
