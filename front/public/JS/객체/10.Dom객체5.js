@@ -30,7 +30,10 @@ upbtn.addEventListener( 'click' , () => {
 	}
 })	
 dawnbtn.addEventListener('click' , ()=> {
-	
+	if( isconnect == true ){
+		counter--
+		h1.textContent = `출력횟수 : ${counter}` 
+	}
 })
  
  	
