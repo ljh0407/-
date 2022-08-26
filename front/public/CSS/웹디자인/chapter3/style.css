@@ -1,40 +1,40 @@
 @charset "UTF-8";
 
-/*-------------- 헤더 --------------*/
+/*-------------------- 헤더 -----------------------*/
 
 body{
-	color: #949087;
-	font-family: '굴림';
-	background-image: url("img/배경.png");
+	color: #949087; font-family: '굴림';
+	background-image: url("images/bg.png");
 }
 header{
 	max-width: 1000px;
-	margin: 2.5rem auto 0 ;
-	background-image: url("img/header.svg"); 
-	background-repeat: no-repeat;	/* 자동 채우기 제거 */
-	background-position: center top; /* 배경위치 */
-	background-size: cover;
+	margin: 2.5rem auto 0;
+	background-image: url("images/header.svg");
+	background-repeat: no-repeat; /* 자동 채우기 제거 */
+	background-position: center top; /* 배경 위치 */
+	background-size: cover; /* 배경 사이즈 */
 	height: 170px;
-}	
+}
 .page_title{
 	font-size: 35px; font-family: '굴림'; text-align: center;
-	margin-top: 50px 0px;
+	margin: 50px 0px;
+	
 }
-
 .page_desc{
 	font-size: 15px; text-align: center;
-	margin-top: 10px;
+	
 }
-
-/* ------------------ container ---------------*/
+/* ------------------- 컨테이너 -------------------*/
 .container{
-	max-width: 1000px;
-	margin: 0 auto;
-	background-color: #fff;
+	max-width: 1000px; margin: 0 auto;	
+	background-color: #ffffff;
 	border-radius: 0 0 10px 10px;
+	
 }
 
-/* ----------------------------------*/
+
+/*---------------------------------------------*/
+
 .post_title{
 	padding-bottom: 10px; 		/* 아래 안쪽 여백 */
 	
@@ -220,11 +220,38 @@ article blockquote::after{
 	font-weight: 900;
 	font-size: 1.5rem;
 	color: #949087;
-	
-	
-	
-	
-	/* 미디어쿼리 : 디바이스 크기에 따라 css 설정 */
+}
+/*------------------푸터------------------*/
+footer{
+	background-color: #949087;
+	text-align: center; 
+	padding: 3rem; 
+}
+footer ul{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 2rem;
+}
+footer li{
+	margin: 0 12px;
+}
+footer a{
+	color: #ffffff;
+}
+footer a:hover{
+	color: #c7c3ba;
+}
+footer small{
+	color: #c7c3ba; font-size: .875rem;
+}
+
+
+
+
+
+
+
+/* 미디어쿼리 : 디바이스 크기에 따라 css 설정 */
 @media( min-width : 600px)  { /* 가로사이즈 600px 이상일때 반응형 */
 	.container{
 		display: flex;
@@ -245,6 +272,11 @@ article blockquote::after{
 		shape-outside : circle();
 		float: left;
 	}
+	.popular_posts{
+		/* position: relative absolute fixed none sticky; */
+		position: sticky;
+		top:1rem;
+	}
 	
 	
 	/* 
@@ -256,5 +288,4 @@ article blockquote::after{
 		min-height : 600px; : 최소 세로사이즈 
 		max-height : 600px;	: 최대 세로사이즈
 	*/
-}
 }
