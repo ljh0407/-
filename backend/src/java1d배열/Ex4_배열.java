@@ -28,7 +28,7 @@ public class Ex4_배열 { // class s
 			for( int 행 = 0 ; 행<배열2.length ; 행++) {
 				// 0부터 마지막 행까지 반복
 				for (int 열 = 0; 열<배열2[행].length; 열++) {
-					// 0부터 마지akr 열까지 반복 [ 열은 행마다 반복 ]
+					// 0부터 마지막 열까지 반복 [ 열은 행마다 반복 ]
 					System.out.print(배열2[행][열]+"\t");
 				}// for e
 					System.out.println();
