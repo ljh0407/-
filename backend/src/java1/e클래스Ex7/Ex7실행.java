@@ -106,4 +106,29 @@ public class Ex7실행 {
 		2. 생성자
 		1. 빈[매개변수가 없는 ] 생성자
 		2. 풀[모든 매개변수가 있는 ] 생성자		
+		
+		
+		System 클래스
+			1. 시스템 클래스 [ 운영체제 관련된 메소드 제공 ]
+				1. system.out  : 출력필드
+				2. system.in   : 입력필드
+				
+		Scanner 클래스
+				1. 객체선언 [키보드에 입력된 바이트열을 객체에 저장]
+					Scanner 변수명 = new Scanner(system.in);
+			 	2. 객체에서 데이터 가져오기
+			 			변수명.next(); : 객체에 저장된 바이트열을 String 호출 [ 띄어쓰기 불가능 ]
+			 			변수명.nextLine(); : 객체에 저장된 바이트열을 String 호출 [ 띄어쓰기 가능 ]
+			 					- 문제점 : nextLine()앞에 또 다른 next~() 있을경우 하나로 취급
+			 					- 해결점 : 앞에 변수명.nextLine()추가
+			 			변수명.nextInt() : 객체에 저장된 바이트열을 int형 호출
+			 			변수명.nextDouble() : 객체에 저장된 바이트열을 double형 호출
+			 	* 입력후 저장[변수]
+			 			String 문자열 = 변수명.next();
+			 			int 정수 = 변수명.nextInt();
+			 			
+			 			
+		
+		
+		
 		*/
