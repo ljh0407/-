@@ -22,39 +22,58 @@ public class Ex3_틱택토게임 {
 			
 			// 2. 사용자 에게 위치 입력받기 
 			while( true ) { // 무한루프 [ 종료조건 : 알을 두었을때 종료 break ] // while 2
-				System.out.print("안내) 위치 선택 : "); int 위치 = scanner.nextInt();
-				if( 위치 < 0 || 위치 > 8 ) { System.out.println("안내) 선택할수 없는 번호입니다.");}
+				System.out.print("안내) 위치 선택 : "); int i = scanner.nextInt();
+				if( i < 0 || i > 8 ) { System.out.println("안내) 선택할수 없는 번호입니다.");}
 				// 해당 위치에 알이 없으면 해당 위치에 알두기 
-				if( 게임판[위치].equals("[ ]") ) {  게임판[위치] = "[O]"; break; } // 알을 두면 무한루프 종료
+				if( 게임판[i].equals("[ ]") ) {  게임판[i] = "[O]"; break; } // 알을 두면 무한루프 종료
 				else { System.out.println("안내) 이미 알이 존재하는 위치 입니다. "); }
 			} // while 2 end 
 			
 			// 3. 컴퓨터 에게 위치 난수 생성
 			while( true ) { // while 2
 				Random random = new Random(); // 랜덤 객체 생성 
-				int 위치 = random.nextInt(9); // 0~8 난수 생성 
-				if( 게임판[위치].equals("[ ]")){ 게임판[위치] = "[X]"; break; } // 알을 두면 무한루프 종료
+				int i = random.nextInt(9); // 0~8 난수 생성 
+				if( 게임판[i].equals("[ ]")){ 게임판[i] = "[X]"; break; } // 알을 두면 무한루프 종료
 			} // while 2 end 
 			
 			// 4. 승리 판단 [ 과제 ] 
 				// 가로 0 1 2 / 3 4 5 / 6 7 8
-			if( 게임판[0].equals("[ ]") ) && 게임판[0].equals(게임판[1]) && 게임판[1].equals(게임판[2]){
-				if( 게임판[3].equals("[ ]")) && 게임판[3].equals(게임판[4]) && 게임판[4].equals(게임판[5]){  
-					if( 게임판[6].equals("[ ]") ) && 게임판[6].equals(게임판[7]) && 게임판[7].equals(게임판[8]){ 
-					}
-				}
+				if(!게임판[0].equals("[ ]") && 게임판[0].equals(게임판[1]) && 게임판[1].equals(게임판[2]) ||
+				!게임판[3].equals("[ ]") && 게임판[3].equals(게임판[4]) && 게임판[4].equals(게임판[5]) ||
+				!게임판[6].equals("[ ]") && 게임판[6].equals(게임판[7]) && 게임판[7].equals(게임판[8]) )
+				{
+				System.out.println("승리");
+				break;
+				} 
+				
+				
+				// 세로 0 3 6 / 1 4 7 / 2 5 8
+				if(!게임판[0].equals("[ ]") && 게임판[0].equals(게임판[3]) && 게임판[3].equals(게임판[6]) ||
+					!게임판[1].equals("[ ]") && 게임판[1].equals(게임판[4]) && 게임판[4].equals(게임판[7]) ||
+					!게임판[2].equals("[ ]") && 게임판[2].equals(게임판[5]) && 게임판[5].equals(게임판[8])
+					) {
+				System.out.println("승리");
+				break;
 			}
+			
+				// 대각선 0 4 8 / 2 4 6
+				if(!게임판[0].equals("[ ]") && 게임판[0].equals(게임판[4]) && 게임판[4].equals(게임판[8]) ||
+					!게임판[2].equals("[ ]") && 게임판[2].equals(게임판[4]) && 게임판[4].equals(게임판[6]) )
+			{System.out.println("승리"); break;}
+			
+			
+		} // while 1  end 
+	} // main end 
+}// class end 
+				
+				
+			
 	
 				
 			
 			
-				// 세로 0 3 6 / 1 4 7 / 2 5 8
 			
 			
-				// 대각선 0 4 8 / 2 4 6
-		} // while 1  end 
-	} // main end 
-} // class end 
 /*
  	틱택토 게임 설계
  		[ 조건 ]
