@@ -1,4 +1,4 @@
-package java1.e클래스Ex10;
+package java1.e클래스.Ex10;
 
 public class Car { // 클래스 [ 설계도 : 변수 선언, 메소드 선언 ]
 

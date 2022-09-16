@@ -47,9 +47,9 @@ public class JDBC실행2 {
 		ps.executeUpdate();
 		// 3. 모든 제품의 정보를 콘솔출력
 		
-		String sql = "select * from product";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ResultSet rs = ps.executeQuery(); // 쿼리 [ SQL 결과 ]
+		String sql1 = "select * from product";
+		PreparedStatement ps1 = con.prepareStatement(sql1);
+		ResultSet rs = ps1.executeQuery(); // 쿼리 [ SQL 결과 ]
 		
 		while( rs.next() ) { // while (조건) : 조건이 true 이면 반복문 실행
 			// rs.next() : 다음 레코드로 이동

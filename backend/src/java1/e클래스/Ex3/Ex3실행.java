@@ -1,4 +1,4 @@
-package java1.e클래스Ex3;
+package java1.e클래스.Ex3;
 
 public class Ex3실행 {
 
