@@ -226,7 +226,213 @@ public class DAO {
 		return list;		
 	}		 
 				
+	// 예제 10
 	
-	//14. Buydto [ 일반적으로 table <---> dto ] 생성
+	ArrayList<MemberDto> 예제10결과() {
+		ArrayList<MemberDto> list = new ArrayList<>();
+		String sql = "select mem_id , mem_name , debut_date , height" 
+				+" from member" 
+				+" where height >= 164 order by height desc";
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next() ) {
+				MemberDto dto = new MemberDto();
+			    dto.mem_id = rs.getString(1);
+				dto.mem_name = rs.getString(2);
+				dto.debut_date = rs.getString(3);
+				dto.height = rs.getShort(4);
+				list.add(dto); // 객체 -- > 리스트 추가
+			} // while end
+			return list;
+		}catch (Exception e) { System.out.println("오류 : "+e);}
+		return list;		
+	}		 
+	
+	// 예제 11 
+	
+	ArrayList<MemberDto> 예제11결과() {
+		ArrayList<MemberDto> list = new ArrayList<>();
+		String sql =  "select mem_id , mem_name , debut_date , height" 
+				+" from member"
+				+" where height >= 164 order by height desc , debut_date asc";
+
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next() ) {
+				MemberDto dto = new MemberDto();
+			    dto.mem_id = rs.getString(1);
+				dto.mem_name = rs.getString(2);
+				dto.debut_date = rs.getString(3);
+				dto.height = rs.getShort(4);
+				list.add(dto); // 객체 -- > 리스트 추가
+			} // while end
+			return list;
+		}catch (Exception e) { System.out.println("오류 : "+e);}
+		return list;		
+	}		 
+	
+	// 예제 12
+	ArrayList<MemberDto> 예제12결과() {
+		ArrayList<MemberDto> list = new ArrayList<>();
+		String sql =  "select mem_name , height" 
+				+" from member" 
+				+" order by height desc limit 3 , 2" ;
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next() ) {
+				MemberDto dto = new MemberDto();
+			    dto.mem_name = rs.getString(1);
+			    dto.height = rs.getShort(2);
+			    list.add(dto); // 객체 -- > 리스트 추가
+			} // while end
+			return list;
+		}catch (Exception e) { System.out.println("오류 : "+e);}
+		return list;		
+	}		 
+	
+	// 예제 13
+	ArrayList<MemberDto> 예제13결과() {
+		ArrayList<MemberDto> list = new ArrayList<>();
+		String sql = "select distinct addr from member";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next() ) {
+				MemberDto dto = new MemberDto();
+			    dto.addr = rs.getString(1);
+			    list.add(dto); // 객체 -- > 리스트 추가
+			} // while end
+			return list;
+		}catch (Exception e) { System.out.println("오류 : "+e);}
+		return list;		
+	}		 
+	
+	// 예제 14
+	ArrayList<MemberDto> 예제14결과() {
+		ArrayList<MemberDto> list = new ArrayList<>();
+		String sql = "select mem_id , sum(amount)" 
+				+"as 수량합계 from buy group by mem_id";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next() ) {
+				MemberDto dto = new MemberDto();
+				dto.mem_id = rs.getString(1);
+				dto.mem_number = rs.getInt(2);
+				list.add(dto); // 객체 -- > 리스트 추가
+			} // while end
+			return list;
+		}catch (Exception e) { System.out.println("오류 : "+e);}
+		return list;		
+	}		 
+		
+				
+	// 예제 15
+	
+	ArrayList<MemberDto> 예제15결과() {
+		ArrayList<MemberDto> list = new ArrayList<>();
+		String sql = "select mem_id" 
+				+ " as 회원_아이디 , sum( price*amount )  as 총_구매금액 "
+				+" from buy group by mem_id";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next() ) {
+				MemberDto dto = new MemberDto();
+				dto.mem_id = rs.getString(1);
+				dto.mem_number = rs.getInt(2);
+				list.add(dto); // 객체 -- > 리스트 추가
+			} // while end
+			return list;
+		}catch (Exception e) { System.out.println("오류 : "+e);}
+		return list;		
+	}		 
+
+		
+	// 예제 16
+	ArrayList<ResultDto> 예제16결과() {
+		ArrayList<ResultDto> list = new ArrayList<>();
+		String sql = "select mem_id , avg( amount ) as 수량평균 from buy group by mem_id";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next() ) {
+				ResultDto dto = new ResultDto(); // 빈객체 선언
+				dto.mem_id = rs.getString(1);
+				dto.valus = rs.getDouble(2);
+				list.add(dto); // 객체 -- > 리스트 추가
+			} // while end
+			return list;
+		}catch (Exception e) { System.out.println("오류 : "+e);}
+		return list;		
+	}		 
+	
+	// 예제 17
+	ArrayList<ResultDto> 예제17결과() {
+		ArrayList<ResultDto> list = new ArrayList<>();
+		String sql = "select mem_id , count( phone1 ) as 연락처 from member group by mem_id";
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next() ) {
+				ResultDto dto = new ResultDto(); // 빈객체 선언
+				dto.mem_id = rs.getString(1);
+				dto.valus = rs.getDouble(2);
+				list.add(dto); // 객체 -- > 리스트 추가
+			} // while end
+			return list;
+		}catch (Exception e) { System.out.println("오류 : "+e);}
+		return list;		
+	}		 
+	
+	// 예제 18
+	ArrayList<ResultDto> 예제18결과() {
+		ArrayList<ResultDto> list = new ArrayList<>();
+		String sql = "select mem_id , count( * ) as 회원수 from member group by mem_id";
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next() ) {
+				ResultDto dto = new ResultDto(); // 빈객체 선언
+				dto.mem_id = rs.getString(1);
+				dto.valus = rs.getDouble(2);
+				list.add(dto); // 객체 -- > 리스트 추가
+			} // while end
+			return list;
+		}catch (Exception e) { System.out.println("오류 : "+e);}
+		return list;		
+	}		 
+	
+	// 예제 19
+	ArrayList<ResultDto> 예제19결과() {
+		ArrayList<ResultDto> list = new ArrayList<>();
+		String sql = "select mem_id as 회원아이디 , sum(price * amount) as 총구매금액"
+				+" from buy"
+				+" group by mem_id"
+				+" having sum(price * amount) > 1000"
+				+" order by sum(price * amount) desc";
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next() ) {
+				ResultDto dto = new ResultDto(); // 빈객체 선언
+				dto.mem_id = rs.getString(1);
+				dto.valus = rs.getDouble(2);
+				list.add(dto); // 객체 -- > 리스트 추가
+			} // while end
+			return list;
+		}catch (Exception e) { System.out.println("오류 : "+e);}
+		return list;		
+	}		 
+	
 	// 14 ~ 19 검색결과 필드 2개 
 	} 

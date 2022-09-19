@@ -132,10 +132,100 @@ public class 실행 {
 					System.out.print( dto.debut_date 	+"\n");
 				}// for e
 			}
-					
-					
-					
 			
+			if ( ch == 10 ) {
+				ArrayList<MemberDto> list = dao.예제10결과();
+				System.out.println("---------------예제10 결과물----------------");
+				for( MemberDto dto : list ) {
+					System.out.print( dto.mem_id		+"\t" );
+					System.out.print( dto.mem_name 		+"\t");
+					System.out.print( dto.debut_date 	+"\t");
+					System.out.print( dto.height 	+"\n");
+				}// for e
+			}		
+			
+			if ( ch == 11 ) {
+				ArrayList<MemberDto> list = dao.예제11결과();
+				System.out.println("---------------예제11 결과물----------------");
+				for( MemberDto dto : list ) {
+					System.out.print( dto.mem_id		+"\t" );
+					System.out.print( dto.mem_name 		+"\t");
+					System.out.print( dto.debut_date 	+"\t");
+					System.out.print( dto.height 	+"\n");
+				}// for e
+			}		
+			
+			if ( ch == 12 ) {
+				ArrayList<MemberDto> list = dao.예제12결과();
+				System.out.println("---------------예제12 결과물----------------");
+				for( MemberDto dto : list ) {
+					System.out.print( dto.mem_name 		+"\t");
+					System.out.print( dto.height 	+"\n");
+				}// for e
+			}		
+			
+			if ( ch == 13 ) {
+				ArrayList<MemberDto> list = dao.예제13결과();
+				System.out.println("---------------예제13 결과물----------------");
+				for( MemberDto dto : list ) {
+					System.out.println( dto.addr 		+"\t");
+					
+				}// for e
+			}		
+			
+			if ( ch == 14 ) {
+				ArrayList<MemberDto> list = dao.예제14결과();
+				System.out.println("---------------예제14 결과물----------------");
+				for( MemberDto dto : list ) {
+					System.out.print( dto.mem_id 		+"\t");
+					System.out.print( dto.mem_number 	+"\n");
+				}// for e
+			}		
+			
+			if ( ch == 15 ) {
+				ArrayList<MemberDto> list = dao.예제15결과();
+				System.out.println("---------------예제15 결과물----------------");
+				for( MemberDto dto : list ) {
+					System.out.print( dto.mem_id 		+"\t");
+					System.out.print( dto.mem_number 	+"\n");
+				}// for e
+			}
+			
+			if ( ch == 16 ) {
+				ArrayList<ResultDto> list = dao.예제16결과();
+				System.out.println("---------------예제16 결과물----------------");
+				for( ResultDto dto : list ) {
+					System.out.print( dto.mem_id 		+"\t");
+					System.out.print( dto.valus 	+"\n");
+				}// for e
+			}
+			
+			if ( ch == 17 ) {
+				ArrayList<ResultDto> list = dao.예제17결과();
+				System.out.println("---------------예제17 결과물----------------");
+				for( ResultDto dto : list ) {
+					System.out.print( dto.mem_id 		+"\t");
+					System.out.print( dto.valus		+"\n");
+				}// for e
+			}
+			
+			if ( ch == 18 ) {
+				ArrayList<ResultDto> list = dao.예제18결과();
+				System.out.println("---------------예제18 결과물----------------");
+				for( ResultDto dto : list ) {
+					System.out.print( dto.mem_id 		+"\t");
+					System.out.print( dto.valus			+"\n");
+				}// for e
+			}
+			
+			if ( ch == 19 ) {
+				ArrayList<ResultDto> list = dao.예제19결과();
+				System.out.println("---------------예제19 결과물----------------");
+				for( ResultDto dto : list ) {
+					System.out.print( dto.mem_id 		+"\t");
+					System.out.print( dto.valus			+"\n");
+				}// for e
+			}
 		}//while e
 		
 	}// main e
