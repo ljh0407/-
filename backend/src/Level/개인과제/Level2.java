@@ -11,20 +11,18 @@ public class Level2 {
 		System.out.printf("%-10s   %15s   %30s\n" , "type" , "value" , "range" );
 		System.out.println("-------------------------------------------------------------");
 		
-		Scanner scanner = new Scanner(System.in);
-		String 문자열 = scanner.next();
-		int 숫자열 = scanner.nextInt();
-		Double 소수점 = scanner.nextDouble();
 		
 		
-		boolean 불 = true; 			System.out.printf("bololean  	\t"+"\t" +불+"\t"+"\n");
-		byte 바이트 = 100; 			System.out.printf("byte  	\t"+"\t" +바이트+"\t"+"\n");
-		char 차 = 'A';				System.out.printf("char  	\t"+"\t" +차+"\t"+"\n");
-		short 쇼트 = 30000; 			System.out.printf("short 	\t"+"\t" +쇼트+"\t"+"\n");
-		int 인트 = 2000000000; 		System.out.printf("int 	\t"+"\t" +인트+"\t"+"\n");
-		long 롱 = 4000000000L;  		System.out.printf("long 	\t"+"\t" +롱+"\t"+"\n");
-		float 플롯 = 3.123f;			System.out.printf("float 	\t"+"\t" +플롯+"\t"+"\n");
-		double 더블 = 3.12312312;		System.out.printf("double 	\t"+"\t" +더블+"\t"+"\n");
+		
+		
+		boolean 불 = true; 			System.out.printf("%-10s   %15b   %30s\n" , "boolean" , 불 , "true or false" );
+		byte 바이트 = 100; 			System.out.printf("%-10s   %15d   %30s\n" , "byte" , 바이트 , "-128 ~ 127 ");
+		char 차 = 'A';				System.out.printf("%-10s   %15s   %30s\n" , "char" , 차 , "0~65535[ character 1 ]");
+		short 쇼트 = 30000; 			System.out.printf("%-10s   %15d   %30s\n" , "int" , 쇼트 , "-32768 ~ 32767");
+		int 인트 = 2000000000; 		System.out.printf("%-10s   %15d   %30s\n" , "int" , 인트 , "-+2000 million");
+		long 롱 = 4000000000L;  		System.out.printf("%-10s   %15d   %30s\n" , "long" , 롱 , "-+2000 million Excess");
+		float 플롯 = 3.123f;			System.out.printf("%-10s   %15s   %30s\n" , "float" , 플롯 , "8 decimal places");
+		double 더블 = 3.12312312;		System.out.printf("%-10s   %15s   %30s\n" , "double" , 더블 , "17 decimal places");
 		
 	}
 	
