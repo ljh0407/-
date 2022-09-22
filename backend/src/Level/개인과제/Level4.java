@@ -9,8 +9,8 @@ public class Level4 {
 		
 		/* 문제풀이 위치 */
 		String answer= "";
-		System.out.println( "	 ,r'\"7 \n "
-				+ "r`-_ ,'   ,/   \n"
+		System.out.println( "	,r'\"7 \n "
+				+ "r`-_ ,'  ,/   \n"
 				+ "  \\. \".L_r'\n"
 				+ "    `~\\/ \n"
 				+ "       |\n"
