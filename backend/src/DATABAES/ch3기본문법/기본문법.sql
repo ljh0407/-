@@ -6,7 +6,7 @@ DDL : 정의어[만들기]
 DML : 조작어[가공]
 	1. SELECT		: 레코드 검색
 	2. INSERT		: 레코드 삽입
-	3. UPDATE	: 레코드 수정
+	3. UPDATE		: 레코드 수정
 	4. DELETE		: 레코드 삭제
     
 */

@@ -78,7 +78,7 @@ public class BoardDao {
 		
 		try {// 2. sql 연결/조작
 		ps = con.prepareStatement(sql);
-		rs = ps.executeQuery();  // select : executeQuery()  // insert,updete,delete : executeUpdate()
+		rs = ps.executeQuery();  // select : executeQuery()  // insert,update,delete : executeUpdate()
 		// resultSet rs : 쿼리[sql결과]에 조작
 		int row = 0; // 배열에 인덱스를 대체할 변수 선언
 			// rs -> null --.next()--> 검색된레코드[행] -> 다음레코드[행]
