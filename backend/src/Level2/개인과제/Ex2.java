@@ -20,6 +20,14 @@ public static int dbinsert() { return new Random().nextInt(3)+1;  }
 		
 		/* 문제풀이 위치 */
 		
+		if(result == 1) {
+			System.out.println("회원가입 성공");
+		}else if(result == 2) {
+			System.out.println("이미 사용중인 아이디");
+		}else if(result == 3) {
+			System.out.println("입력이 안된 정보가 있습니다");
+		}else {System.out.println("그외 데이터베이스 오류 출력");}
+		
 		
 		/* ----------- */
 		
