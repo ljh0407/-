@@ -1,4 +1,4 @@
-package Leve2.개인과제;
+package Level2.개인과제;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -17,11 +17,11 @@ public class Ex1 {
 		
 		/* 문제풀이 위치 */
 			
-			btn = 'x';
+			
 			if( btn == 'x') {
 				
 				System.out.println(">> 음악종료");
-				
+				break;
 			}else {}
 				
 			
