@@ -34,6 +34,6 @@ public class view {
 		System.out.println("닉네임을 입력하세요 : ");
 		boolean result = control.sginup(mid,pw,mname,mnn);
 		
-	}
+	} 
 	
 }
