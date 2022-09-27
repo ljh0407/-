@@ -1,5 +1,4 @@
-package 타자연습게임;
-
+package 타자연습게임.선생님꺼;
 
 public class 타이머스레드 extends Thread {
 
