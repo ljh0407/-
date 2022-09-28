@@ -14,11 +14,11 @@ public class Ex7 {
 		while(true) {
 			System.out.print("배수 입력 :"); int input = scanner.nextInt();
 		/* 문제풀이 위치 */
-			int count = 0;
+			
 			for(int i = 0 ; i<=100; i++) {
-				if(i*input == 0) {
+				if( i % input == 0) {	// 배수 : 값 / 수  나머지가  0 이면  값 은 수의 배수 
 					
-					System.out.println(input*2);}
+					System.out.println( i );}
 				
 			}
 		/* ----------- */
