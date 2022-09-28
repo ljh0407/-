@@ -10,10 +10,10 @@ public class view {
 	private static view view = new view();
 	private view() {}
 	public static view getInstance() {return view;}
-	geme_control control = new geme_control();
+	
 	
 	// 메인페이지 
-	public void mainpage() {
+	 void mainpage() {
 		System.out.println("=============타자게임============");
 		System.out.print("1.회원가입\t2.로그인\t3.랭킹순위");
 		try {
@@ -26,13 +26,13 @@ public class view {
 		} catch (Exception e) {}
 	}
 	
-	void sginup() {
+	private void sginup() {
 		
 		System.out.println("아이디를 입력하세요 : " );  
 		System.out.println("비밀번호를 입력하세요 : ");
 		System.out.println("이름을 입력하세요 : ");
 		System.out.println("닉네임을 입력하세요 : ");
-		boolean result = control.sginup(mid,pw,mname,mnn);
+		geme_control.getInstance().signup(mid, pw, mname, mnn);
 		
 	} 
 	

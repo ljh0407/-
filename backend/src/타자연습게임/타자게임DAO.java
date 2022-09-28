@@ -13,6 +13,8 @@ public class 타자게임DAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	private static 타자게임DAO dao = new 타자게임DAO();
+	private 타자게임DAO() {}
+	public static 타자게임DAO getInstance() {return dao;}
 	
 	
 	
@@ -21,7 +23,7 @@ public class 타자게임DAO {
 	// 생성자
 	
 	
-	public 타자게임DAO() {
+	public void 타자게임DAO() {
 		try {
 		con = DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/typing_game",
