@@ -14,15 +14,9 @@ public class 타자게임DAO {
 	private ResultSet rs;
 	private static 타자게임DAO dao = new 타자게임DAO();
 	private 타자게임DAO() {}
-	public static 타자게임DAO getInstance() {return dao;}
-	
-	
-	
-	
-	
+	// 메소드
+	public static 타자게임DAO getInstance() {return dao;}	
 	// 생성자
-	
-	
 	public void 타자게임DAO() {
 		try {
 		con = DriverManager.getConnection(
@@ -31,8 +25,7 @@ public class 타자게임DAO {
 			
 		} catch (Exception e) { System.out.println("DB 오류 : "+e);}
 	}
-	// 메소드
-	public static 타자게임DAO getInstance() {return dao;}
+
 	
 	// 1. 회원가입
 	 boolean sginup(회원가입DTO dto){

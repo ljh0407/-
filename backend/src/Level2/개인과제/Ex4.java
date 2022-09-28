@@ -19,12 +19,33 @@ public class Ex4 {
 		String player = scanner.next();
 		
 		/* 문제풀이 위치 */
-		String 가위 = scanner.next();
-		String 바위 = scanner.next();
-		String 보 = scanner.next();
+		while(true) {
+		// 플레이어 승리조건
+		if(player.equals("가위") && com == 3 &&  player.equals("바위") && com == 1 
+				 && player.equals("보") && com == 2 ){System.out.println("플레이어승리");
+			if(player.equals("가위") && com == 2 && player.equals("바위") && com == 3
+					&& player.equals("보") && com == 1) {System.out.println("플레이어패배");
+				if(player.equals("가위") && com == 1 && player.equals("바위") && com == 2 
+				&& player.equals("보") && com == 3) {System.out.println("무승부");
+			}
+		}
+	}
+				
+	/*
+	 	if(player.equals("가위") && com == 3 &&  player.equals("바위") && com == 1 
+				 && player.equals("보") && com == 2 ){System.out.println("플레이어승리");}
+	  
+	 * 	// 플레이어 패배조건
+		if(player.equals("가위") && com == 2 && player.equals("바위") && com == 3
+				&& player.equals("보") && com == 1) {System.out.println("플레이어 패배");}
 		
-		
-		
+		// 무승부 다시
+		if(player.equals("가위") && com == 1 && player.equals("바위") && com == 2 
+				&& player.equals("보") && com == 3) {System.out.println("무승부 다시");}
+	
+	*/	
+			
+		}// while end
 		
 		
 		

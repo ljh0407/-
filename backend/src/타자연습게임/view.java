@@ -28,10 +28,10 @@ public class view {
 	
 	private void sginup() {
 		
-		System.out.println("아이디를 입력하세요 : " );  
-		System.out.println("비밀번호를 입력하세요 : ");
-		System.out.println("이름을 입력하세요 : ");
-		System.out.println("닉네임을 입력하세요 : ");
+		System.out.println("아이디를 입력하세요 : " );  String mid = scanner.next();
+		System.out.println("비밀번호를 입력하세요 : "); String pw = scanner.next();  
+		System.out.println("이름을 입력하세요 : ");   String mname = scanner.next();
+		System.out.println("닉네임을 입력하세요 : ");  String mnn = scanner.next();
 		geme_control.getInstance().signup(mid, pw, mname, mnn);
 		
 	} 
