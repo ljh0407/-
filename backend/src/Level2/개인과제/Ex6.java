@@ -14,7 +14,7 @@ public class Ex6 {
 		
 		/* 문제풀이 위치 */
 		String 종료버튼 = scanner.next();
-		while (true) { System.out.println("프로그램종료");
+		while (true) { 
 			if(종료버튼.equals("end")) {System.out.println("종료");break;}
 		}
 		//System.out.println("종료");
