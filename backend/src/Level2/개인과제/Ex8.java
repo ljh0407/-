@@ -12,6 +12,33 @@ public class Ex8 {
 		Scanner scanner = new Scanner(System.in);
 	
 		/* 문제풀이 위치 */
+		int 누적 = 0;
+		while(true) {
+		System.out.print("input : ");
+		int num = scanner.nextInt();
+		
+		누적 += num;
+		
+			for(int i = 0 ; i<누적 ; i++ ) {
+				
+				System.out.print(" ■ ");
+				
+			}
+			if( 누적 < 0 ) break;
+		}
+			
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

@@ -40,6 +40,8 @@ public class Ex4 {
 		if(player.equals("가위") && com == 1 && player.equals("바위") && com == 2 
 				&& player.equals("보") && com == 3) {System.out.println("무승부 다시");}
 	
+	
+	조건식 경우의수가 1개 이상일땐 꼭 || = 이거나 사용하기  
 	*/	
 			
 		
