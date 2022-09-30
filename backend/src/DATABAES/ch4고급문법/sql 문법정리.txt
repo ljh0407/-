@@ -1,0 +1,87 @@
+sql
+1. 	- DDl : 	[ 데이터베이스 정의 어 ]
+		1. CREATE	: 테이블/데이터베이스/뷰 생성
+			1. CREATE BATABASE 데이터베이스명
+			2. CREATE TABLE 테이블명(필드명 데이터타입 제약조건 , 필드명2 데이터타입 제약조건)
+			
+		2. ALTER		: 테이블/데이터베이스/뷰 수정
+			[ 테이블내 필드 수정 ]
+			1. alter table 테이블명 add 		column 필드명 데이터타입 제약조건;
+			2. alter table 테이블명 modify 	column필드명 새로운타입 새로운제약조건;
+			3. alter table 테이블명 change 	column기존필드명 새로운필드명 새로운타입 새로운제약조건;
+			4. alter table 테이블명 rename 	column기존필드명 to 새로운필드명;
+			5. alter table 테이블명 drop		column 필드명
+				
+			[ 테이블내 제약조건 수정 ]
+			[추가] 1. alter table 테이블명 add constraint [제약조건명] primary key (pk로 설정할필드명)
+			[삭제] 2. alter bable 테이블명 drop constraint [제약조건명]
+
+		3. DROP		: 테이블/데이터베이스/뷰 삭제
+		4. RENAME	: 테이블/뷰 이름 수정 
+		5. TRUNCATE	: 테이블/뷰 모든삭제 
+	- DML	[ 데이터베이스 조작 어 ]
+		1. SELECT		: 테이블내 레코드 검색
+
+			1. select * from 테이블명
+			2. select 필드명1 , 필드명2 from 테이블명
+			3. select * from 테이블명 [where 조건]
+			4. select * from 테이블명 [where 조건] [order by 정렬필드] [asc/desc]
+			5. select * from 테이블명 [where 조건] [group by] [order by 정렬필드] [asc/desc]
+			6. select * from 테이블명 [where 조건] [group by] 그룹필드 [having그룹조건] [order by 정렬필드] [asc/desc]
+			7. select * from 테이블명 [where 조건] [group by 그룹필드] [having그룹조건] [order by 정렬필드] [asc/desc limit 시작점 ,개수]
+			---------------------------------------------------------------------------------------------------------------------------------------------
+			x. 테이블 2개이상 검색
+				1. select * from 테이블명1, 테이블명2 	[ 테이블명1레코드 x 테이블명2레코드 ]
+				2. select * rrom 테이블명1 , 테이블명2 where 테이블명1. pk필드명 = 테이블명2.fk필드명
+				3. select * from 테이블명1 별칭1 , 테이블명2 별칭2 where 별칭.pk필드명 = 별칭2.fk필드명
+
+		2. INSERT		: 테이블내 레코드 삽입
+			1. insert into 테이블명 velues(값1,값2,값3)
+			2. insert into 테이블명 ( 필드명1 ,필드명2)values(값1 ,값2)
+		3. UPDATE	: 테이블내 레코드 수정
+			1. update 테이블명 set 필드명 = 새로운값, 필드명=새로운값 [where조건]
+		4. DELETE		: 테이블내 레코드 삭제
+			1. delete from 테이블명 [where조건]
+	- DCL	[ 데이터베이스 제어 어 ]
+		1. GRANT		: 계정내 권한부여
+		2. REVOKE	: 계정내 권한취소
+	- TCL	[ 트랜잭션 제어 어 ]
+		1. COMMIT	: 트랜잭션
+		2. ROLLBACK	: 트랜잭션 취소
+	- 그외 	
+		1. USE
+		2. DESCRIBE 
+
+--------------------------------------------------------------------------------
+- 데이터타입 [ p. 172 ] : DBMS 마다 상이
+	1. 정수형 
+		tinyint
+		smallint
+		int
+		bigint
+	2. 문자형		
+		char(길이)
+		varvhar(길이)
+	3. 대용량
+		text
+		longtext
+		blob
+		longblob
+	4. 실수형
+		float
+		double
+	5. 날짜형 
+		date
+		time
+		datetime
+
+- 제약조건 
+	1. auto_increment [ my sql에만 존재 ] : 자동번호 [ * primary key이랑 같이 ]
+	2. not null	: null 저장불가 
+	3. primary key	: 기본키 [ not null + unique ]
+		- constraint primary key 제약조건명( pk로 설정할 필드명 )
+		- constraint [제약조건명] foreign key fk 로 설정할 필드명 references 기준테이블( pk필드명 )
+	4. default 값	: 레코드 삽입 기본값
+	5. unique		: 중복불가
+	
+	
