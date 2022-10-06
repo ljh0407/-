@@ -1,76 +1,123 @@
 package model.dto;
 
-public class MemberDto {
+import model.dao.Dao;
 
-	// 1. 필드 private 
-	// 2. 생성자 기본2개 : 1.빈생성자 2.풀생성자 3.그외추가
-	// 3. get , set 메소드
-	// 4. 필드 정보 확인메소드 : to String()
+public class MemberDto  {
+
 	
-	
-	private String id;
-	private String pw;
-	private String name;
-	private String phone;
-	// 빈생성자
-	public MemberDto() {}
-	
-	
-	public MemberDto(String id, String pw, String name, String phone) {
+	private int mno;					
+	private String mid;			
+	private String mpassword;								
+	private String mname;						
+	private String mphone;									
+	private String memail;		
+	private String maddress;
+	private String mdete;		
+	private int mpoint;
+	   
+	   
+	public MemberDto(int mno, String mid, String mpassword, String mname, String mphone, String memail, String maddress,
+			String mdete, int mpoint) {
 		super();
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.phone = phone;
+		this.mno = mno;
+		this.mid = mid;
+		this.mpassword = mpassword;
+		this.mname = mname;
+		this.mphone = mphone;
+		this.memail = memail;
+		this.maddress = maddress;
+		this.mdete = mdete;
+		this.mpoint = mpoint;
 	}
 
 
-	public String getId() {
-		return id;
+	public int getMno() {
+		return mno;
 	}
 
 
-	public void setId(String id) {
-		this.id = id;
+	public void setMno(int mno) {
+		this.mno = mno;
 	}
 
 
-	public String getPw() {
-		return pw;
+	public String getMid() {
+		return mid;
 	}
 
 
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 
 
-	public String getName() {
-		return name;
+	public String getMpassword() {
+		return mpassword;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMpassword(String mpassword) {
+		this.mpassword = mpassword;
 	}
 
 
-	public String getPhone() {
-		return phone;
+	public String getMname() {
+		return mname;
 	}
 
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setMname(String mname) {
+		this.mname = mname;
 	}
 
 
-	@Override
-	public String toString() {
-		return "MemberDto [id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone + "]";
+	public String getMphone() {
+		return mphone;
 	}
-	
-	
-	
-	
+
+
+	public void setMphone(String mphone) {
+		this.mphone = mphone;
+	}
+
+
+	public String getMemail() {
+		return memail;
+	}
+
+
+	public void setMemail(String memail) {
+		this.memail = memail;
+	}
+
+
+	public String getMaddress() {
+		return maddress;
+	}
+
+
+	public void setMaddress(String maddress) {
+		this.maddress = maddress;
+	}
+
+
+	public String getMdete() {
+		return mdete;
+	}
+
+
+	public void setMdete(String mdete) {
+		this.mdete = mdete;
+	}
+
+
+	public int getMpoint() {
+		return mpoint;
+	}
+
+
+	public void setMpoint(int mpoint) {
+		this.mpoint = mpoint;
+	}
+   
 }

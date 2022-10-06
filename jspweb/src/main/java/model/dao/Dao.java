@@ -7,21 +7,22 @@ import java.sql.ResultSet;
 
 public class Dao {
 
-	Connection con;  		// DB연동 
-	PreparedStatement ps; 	// sql 조작
-	ResultSet rs;			// 쿼리조작
+	Connection con;
+	PreparedStatement ps;
+	ResultSet rs;
 	
 	public Dao() {
+			
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/jspweb",
-					"root",
-					"1234");
-			System.out.println("DB연동성공");
-		} catch (Exception e) {System.out.println(e);}
+		Class.forName("com.mysql.cj.jdbc.Driver");  // mysql 드라이버 이름
+		con = DriverManager.getConnection(
+				"jdbc:mysql://localhost:3306/jspweb",
+				"root",
+				"1234");
+		System.out.println("DB 연동 성공");
 		
+		} catch (Exception e) {System.out.println(e);}
 	}
-	
+		
 	
 }

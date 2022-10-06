@@ -1,57 +1,71 @@
 package controller.member;
 
 import java.io.IOException;
-import java.util.Scanner;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jdt.internal.compiler.ast.SuperReference;
-
 import model.dao.MemberDao;
 import model.dto.MemberDto;
+//@WebServlet("URL정의") : 해당 클래스를 호출하는 URL 정의
 
-@WebServlet("/signup")
+
+@WebServlet("/member/signup") // 해당 클래스로 매핑(연결) URL 설정 [패키지 경로x] 상관없음
 public class signup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 
-   
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// 1. 입력
-		/*
-		 * Scanner scanner = new Scanner(System.in); System.out.println("아이디 : ");
-		 * String id = scanner.next(); System.out.println("비밀번호 : "); String pw =
-		 * scanner.next(); System.out.println("이름 : "); String name = scanner.next();
-		 * System.out.println("연락처 : "); String phone = scanner.next();
-		 */
-		
-		// ** 전송받은 변수를 요청하기
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String name = request.getParameter("name");
-		String phone = request.getParameter("phone"); // getParameter 변수 호출??
-		
-		// 2. 입력받은 변수 4개를 DAO 이동하자 [ 변수4개 vs DTO 1개 vs 컬렉션프레임워크 ]
-			// 1.변수 4개 -> dto 객체화 
-		MemberDto dto = new MemberDto(id, pw, name, phone);
-			// 2. 테스트 [ 객체 필드 정보 확인 ]
-		System.out.println(dto.toString() );
-			// 3. Dao 싱글톤 객체 호춝 한 다음 메소드 호출
-		boolean result = MemberDao.getInstance().signup(dto);
-		if( result ) {System.out.println("회원가입 성공");}
-		else {System.out.println("회원가입 실패");}
-		
-		
-
-	
-		response.getWriter().append("Served at: ").append(request.getContextPath());}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	// 1. jsp(html) form 입력받은 데이터 요청	
+	String mid = request.getParameter("mid");
+	String mpassword = request.getParameter("mpassword");
+	String mpasswordfirm = request.getParameter("mpasswordfirm");
+	String mname = request.getParameter("mname");
+	String mphone = request.getParameter("mphone");
+	String memail = request.getParameter("memail");
+	
+	// 주소4개 요청
+	String maadress1 = request.getParameter("maadress1");
+	String maadress2 = request.getParameter("maadress2");
+	String maadress3 = request.getParameter("maadress3");
+	String maadress4 = request.getParameter("maadress4");
+	
+	// 주소4개 --> 하나의 변수
+	String maddress = maadress1+","+maadress2+","+maadress3+","+maadress4 ;
+	// 2. 변수6개 ----> dto 객체화
+	MemberDto dto = new MemberDto(
+			0, mid, 
+			mpassword,	mname, 
+			mphone,memail, 
+			maddress,null, 0);
+	// 3. 통신확인 [html ---> java]
+	System.out.println(dto.toString() );
+	// 4. dao 메소드 호출용 객체 선언
+		// 1. 싱글톤객체가 아닐경우
+		// MemberDao dao = new MemberDao();
+		// boolean result = dao.signup(dto)
+		// 2. 싱글톤객체가 있을경우 [ 클래스명.get ]
+	MemberDao dao = new MemberDao();
+	boolean result = MemberDao.getInstance().signup(dto);
+	// 5. 결과제어
+	if(result) {response.sendRedirect("/jspweb/member/login.jsp");}
+	else {System.out.println("오류");}
 	}
+	/*if(result) {System.out.println("회원가입 성공");}
+	else {System.out.println("회원가입 실패");}
+	
+	doGet(request, response);
+			
+	}*/
 
+	public signup() {
+		super();
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
 }
