@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import model.dto.boardDto;
 
@@ -27,7 +28,7 @@ public class boardDao {
 	} catch (Exception e) {System.out.println(e);}
 	}
 		
-	
+	// 글 등록
 	public boolean noticeboard(boardDto dto) {
 		String sql = "insert into board (btitle,bcontent,bwriter,bpassword)"
 				+ " values(?,?,?,?)";
@@ -40,7 +41,45 @@ public class boardDao {
 			ps.executeUpdate();return true;
 		} catch (Exception e) {System.out.println(e);}
 		return false;
+	}
+
 	
+	public boardDto getboard(String bwriter) {
+		boardDto dto = null;
+		String sql = "select * from board where bwriter = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, bwriter);
+			rs = ps.executeQuery();
+			if(rs.next() ) {
+				dto = new boardDto(
+						rs.getInt(1),rs.getString(2),
+						rs.getString(3),rs.getString(4),null,
+						rs.getString(6),rs.getInt(7));
+				return dto;
+			}
+		} catch (Exception e) {System.out.println(e);
+		}return dto;
+	}
+	
+	// 모든 게시글 출력
+	public ArrayList<boardDto> getboardlist() {
+		ArrayList<boardDto> list = new ArrayList<>();
+		String sql = "select * from board";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next() ) {
+				boardDto dto = new boardDto(
+						rs.getInt(1) , rs.getString(2),
+						rs.getString(3),rs.getString(4),null,
+						rs.getString(6),rs.getInt(7)
+						);
+				list.add(dto);
+			}
+			return list;
+		} catch (Exception e) {System.out.println(e);}
+		return list;
 	}
 	
 }

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import model.dao.boardDao;
 import model.dto.boardDto;
 
@@ -21,6 +23,10 @@ public class board extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		//1. 요청
+		//2. db
+		
+		
 		String btitle = request.getParameter("btitle");
 		String bcontent = request.getParameter("bcontent");
 		String bwriter = request.getParameter("bwriter");
@@ -34,9 +40,11 @@ public class board extends HttpServlet {
 		boardDao dao = new boardDao();
 		boolean result = boardDao.getInstance().noticeboard(dto);
 		
+		
+		
 		if(result) {response.sendRedirect("/jspweb/member/board2.jsp");}
 		else {System.out.println("등록실패");}
-		
+		response.setCharacterEncoding("UTF-8");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
