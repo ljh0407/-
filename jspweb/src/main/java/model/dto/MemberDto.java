@@ -12,12 +12,12 @@ public class MemberDto  {
 	private String mphone;									
 	private String memail;		
 	private String maddress;
-	private String mdete;		
+	private String mdate;		
 	private int mpoint;
-	   
-	   
+	
+	
 	public MemberDto(int mno, String mid, String mpassword, String mname, String mphone, String memail, String maddress,
-			String mdete, int mpoint) {
+			String mdate, int mpoint) {
 		super();
 		this.mno = mno;
 		this.mid = mid;
@@ -26,7 +26,7 @@ public class MemberDto  {
 		this.mphone = mphone;
 		this.memail = memail;
 		this.maddress = maddress;
-		this.mdete = mdete;
+		this.mdate = mdate;
 		this.mpoint = mpoint;
 	}
 
@@ -101,13 +101,13 @@ public class MemberDto  {
 	}
 
 
-	public String getMdete() {
-		return mdete;
+	public String getMdate() {
+		return mdate;
 	}
 
 
-	public void setMdete(String mdete) {
-		this.mdete = mdete;
+	public void setMdate(String mdate) {
+		this.mdate = mdate;
 	}
 
 
@@ -119,5 +119,6 @@ public class MemberDto  {
 	public void setMpoint(int mpoint) {
 		this.mpoint = mpoint;
 	}
-   
-}
+	   
+	   
+	}

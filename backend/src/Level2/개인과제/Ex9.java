@@ -6,19 +6,23 @@ public class Ex9 {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
+		 String 이름 =null;
+	     String 주민등록번호=null;
+	     String 전화번호=null;
+	     int 총잔고 = 0;
+	     int 입금액 = 0;
+	     int 출금액 = 0;
 		
 		while(true) {
 		System.out.println("============간단 계좌만들기============");
 		System.out.println("1.계좌만들기\t2.입금\t3.출금");
 		System.out.println("선택 : ");
-		int 총잔고 = scanner.nextInt();
-		int 입금액 = scanner.nextInt();
-		int 출금액 = scanner.nextInt();
+		
 		int ch = scanner.nextInt();
 		if(ch == 1) {// 계좌만들기
-			System.out.println("이름 : ");String 이름 = scanner.next();
-			System.out.println("주민등록번호 : ");String 주민등록번호 = scanner.next();
-			System.out.println("전화번호 : ");String 전화번호 = scanner.next();
+			System.out.println("이름 : ");
+			System.out.println("주민등록번호 : ");
+			System.out.println("전화번호 : ");
 			System.out.println("초기 입금액 : ");
 			System.out.println("========================================");
 			System.out.println("입력한 정보를 다시 한번 확인해주세요.");
