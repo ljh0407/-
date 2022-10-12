@@ -60,7 +60,7 @@ public class boardDao {
 				object.put("btitle", rs.getString(2) );
 				object.put("bcontent", rs.getString(3) );
 				object.put("bwriter", rs.getString(4) );
-				object.put("bdate", rs.getString(5) );
+				object.put("bdate", rs.getString(6) ); 
 				object.put("bview", rs.getInt(7) );
 				array.add(object);
 			}return array;
@@ -68,4 +68,12 @@ public class boardDao {
 		return array;
 	}
 	
+	// 조회수
+	public boolean bview(int bno) {
+		String sql = "update board set bview = bview +1 where bno = "+bno;
+		try {
+			ps = con.prepareStatement(sql);
+			int count = ps.executeUpdate(); return true;
+		} catch (Exception e) {System.out.println(e);}return false;
+	}
 }

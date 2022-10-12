@@ -7,39 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
-import model.dao.Dao;
 import model.dao.boardDao;
-import model.dto.boardDto;
 
-@WebServlet("/member/board")
-public class board extends HttpServlet {
+@WebServlet("/bview")
+public class bview extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public board() {
+    public bview() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// 글등록
-		// 1. 요청
-		request.setCharacterEncoding("UTF-8"); // 한글 인코딩
-		String btitle = request.getParameter("btitle");
-		String bcontent = request.getParameter("bcontent");
-		String bwriter = request.getParameter("bwriter");
-		String bpassword = request.getParameter("bpassword");
-		// 2. db처리
+		int bno = Integer.parseInt(request.getParameter("bno") );
 		boardDao dao = new boardDao();
-		// 3. 결과제어
-		boolean result = 
-				dao.board(btitle, bcontent, bwriter, bpassword);
+		boolean result = dao.bview(bno);
 		response.getWriter().print(result);
-		
-		
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
