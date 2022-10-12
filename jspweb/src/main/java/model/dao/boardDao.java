@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import model.dto.boardDto;
 
 public class boardDao {
@@ -27,59 +30,42 @@ public class boardDao {
 		System.out.println("DB 연동 성공");
 	} catch (Exception e) {System.out.println(e);}
 	}
-		
-	// 글 등록
-	public boolean noticeboard(boardDto dto) {
-		String sql = "insert into board (btitle,bcontent,bwriter,bpassword)"
+	// 글등록	
+	public boolean board( 
+			String btitle , String bcontent,
+			String bwriter , String bpassword){
+		String sql = "insert into board ( btitle , bcontent , bwriter , bpassword)"
 				+ " values(?,?,?,?)";
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, dto.getBtitle());
-			ps.setString(2, dto.getBcontent());
-			ps.setString(3, dto.getBwriter());
-			ps.setString(4, dto.getBpassword());
-			ps.executeUpdate();return true;
-		} catch (Exception e) {System.out.println(e);}
-		return false;
-	}
-
-	
-	public boardDto getboard(String bwriter) {
-		boardDto dto = null;
-		String sql = "select * from board where bwriter = ?";
-		try {
-			ps = con.prepareStatement(sql);
-			ps.setString(1, bwriter);
-			rs = ps.executeQuery();
-			if(rs.next() ) {
-				dto = new boardDto(
-						rs.getInt(1),rs.getString(2),
-						rs.getString(3),rs.getString(4),null,
-						rs.getString(6),rs.getInt(7));
-				return dto;
-			}
-		} catch (Exception e) {System.out.println(e);
-		}return dto;
+			ps.setString(1, btitle);
+			ps.setString(2, bcontent);
+			ps.setString(3, bwriter);
+			ps.setString(4, bpassword);
+			ps.executeUpdate(); return true;
+		} catch (Exception e) {System.out.println(e);}return false;
 	}
 	
-	// 모든 게시글 출력
-	public ArrayList<boardDto> getboardlist() {
-		ArrayList<boardDto> list = new ArrayList<>();
+	// 글 출력
+	
+	public JSONArray blist() {
+		JSONArray array = new JSONArray();
 		String sql = "select * from board";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next() ) {
-				boardDto dto = new boardDto(
-						rs.getInt(1) , rs.getString(2),
-						rs.getString(3),rs.getString(4),null,
-						rs.getString(6),rs.getInt(7)
-						);
-				list.add(dto);
-			}
-			return list;
+				JSONObject object = new JSONObject();
+				object.put("bno", rs.getInt(1) );
+				object.put("btitle", rs.getString(2) );
+				object.put("bcontent", rs.getString(3) );
+				object.put("bwriter", rs.getString(4) );
+				object.put("bdate", rs.getString(5) );
+				object.put("bview", rs.getInt(7) );
+				array.add(object);
+			}return array;
 		} catch (Exception e) {System.out.println(e);}
-		return list;
+		return array;
 	}
 	
 }
