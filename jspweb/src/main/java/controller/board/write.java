@@ -1,4 +1,4 @@
-package controller.member;
+package controller.board;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,37 +7,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
+import model.dao.BaordDao;
+import model.dao.MemberDao;
 
-import model.dao.Dao;
-import model.dao.boardDao;
-import model.dto.boardDto;
-
-@WebServlet("/member/board")
-public class board extends HttpServlet {
+@WebServlet("/board/write")
+public class write extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public board() {
+    public write() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 글등록
-		// 1. 요청
-		request.setCharacterEncoding("UTF-8"); // 한글 인코딩
+		String mid = (String)request.getSession().getAttribute("mid");
+		int mno = MemberDao.getInstance().getBno(mid);
+		
 		String btitle = request.getParameter("btitle");
 		String bcontent = request.getParameter("bcontent");
-		String bwriter = request.getParameter("bwriter");
-		String bpassword = request.getParameter("bpassword");
-		// 2. db처리
-		boardDao dao = new boardDao();
-		// 3. 결과제어
-		boolean result = 
-				dao.board(btitle, bcontent, bwriter, bpassword);
+		
+		
+		System.out.println(btitle);
+		System.out.println(bcontent);
+		
+		boolean result =
+				BaordDao.getInstance().write(btitle , bcontent , mno);
+				System.out.println(result);
+			/*
+			 * form 전송용 if(result) {response.sendRedirect("list.jsp");} else
+			 * {response.sendRedirect("write.jsp");}
+			 */
 		response.getWriter().print(result);
-		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
