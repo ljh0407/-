@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import model.dao.BaordDao;
+import model.dao.BoardDao;
 import model.dto.BoardDto;
 
 /**
@@ -23,7 +23,7 @@ public class list extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 요청x
 		// 2. db
-		ArrayList<BoardDto> list =  BaordDao.getInstance().getlist( );
+		ArrayList<BoardDto> list =  BoardDao.getInstance().getlist( );
 			// ** arraylist ---> jsonarray 변환[ js에서 쓸려고 ]
 			JSONArray array = new JSONArray();
 			for( int i = 0  ; i<list.size() ; i++ ) {
