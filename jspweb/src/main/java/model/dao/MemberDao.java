@@ -180,7 +180,7 @@ public boolean emailcheck(String memail) {
 }
 	
 
-	// 1. 회원정보 수정
+	// 11. 회원정보 수정
 public boolean update(String mid , String  mname) {
 	String sql = "update member set mname = ? where mid = ?";
 	try {
@@ -190,6 +190,17 @@ public boolean update(String mid , String  mname) {
 	} catch (Exception e) {System.out.println(e);}return false;
 }
 	
+	// 12. 게시글 등록
+	public int getBno( String mid) {
+		String sql = "select mno from member where mid =?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, mid);
+			rs = ps.executeQuery();
+			if(rs.next() )return rs.getInt(1);
+		} catch (Exception e) {System.out.println(e);
+		} return 0;
+	}
 }
 	
 	

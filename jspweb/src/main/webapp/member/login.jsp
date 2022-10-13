@@ -17,9 +17,9 @@
 				<button type="submit" onclick="login()">로그인</button>
 				
 			<ul>
-				<li><a href="#">회원가입</a> </li>
-				<li><a href="#">아이디찾기</a> </li>
-				<li><a href="#">비밀번호찾기</a> </li>
+				<li><a href="signup.jsp">회원가입</a> </li>
+				<li><a href="findid.jsp">아이디찾기</a> </li>
+				<li><a href="findpassword.jsp">비밀번호찾기</a> </li>
 				
 			
 			</ul>	
