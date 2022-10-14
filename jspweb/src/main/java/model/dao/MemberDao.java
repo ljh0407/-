@@ -191,7 +191,7 @@ public boolean update(String mid , String  mname) {
 }
 	
 	// 12. 게시글 등록
-	public int getBno( String mid) {
+	public int getMno( String mid) {
 		String sql = "select mno from member where mid =?";
 		try {
 			ps = con.prepareStatement(sql);
@@ -201,6 +201,8 @@ public boolean update(String mid , String  mname) {
 		} catch (Exception e) {System.out.println(e);
 		} return 0;
 	}
+
+	
 }
 	
 	

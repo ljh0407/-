@@ -4,16 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-	<!-- 썸머노트 API css -->
+<!-- 썸머노트 API css -->
 	<!-- include libraries(jQuery, bootstrap) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
+<title>Insert title here</title>
 </head>
 <body>
 
-		<%@include file="../header.jsp" %>
+<%@include file="../header.jsp" %>
 		
 		<!-- 로그인이 안되어 있는경우 페이지 이동 -->
 		<% if (loginid == null ) response.sendRedirect("http://localhost:8080/jspweb/member/login.jsp"); %>
@@ -37,7 +37,7 @@
 			<textarea id="summernote" name="bcontent"></textarea>
 			첨부파일 : <input type="file" name="bfile"><br>
 			<!-- form 태그 안에서 button 사용시에는 type 필수 넣기 -->
-			<button type="button" onclick="bwrite()">쓰기</button>
+			<button type="button" onclick="bupdate()">수정</button>
 		</form>	
 		</div>
 		<!-- 썸머노트 API js -->
@@ -48,6 +48,8 @@
 		<script src="lang/summernote-ko-KR.js"></script>
 		
 		<!-- 사용자정의 js -->
-		<script type="text/javascript" src="../js/board/write.js"></script>
+		<script type="text/javascript" src="../js/board/update.js"></script>
+
+
 </body>
 </html>

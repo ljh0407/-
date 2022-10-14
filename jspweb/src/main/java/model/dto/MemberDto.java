@@ -15,7 +15,7 @@ public class MemberDto  {
 	private String mdate;		
 	private int mpoint;
 	
-	
+	public MemberDto() {}
 	public MemberDto(int mno, String mid, String mpassword, String mname, String mphone, String memail, String maddress,
 			String mdate, int mpoint) {
 		super();

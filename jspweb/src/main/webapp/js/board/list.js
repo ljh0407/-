@@ -24,7 +24,7 @@ function list(){ // 함수 정의한다
 						'</tr>';
 			} // for end 
 				console.log( html )
-			document.querySelector('.btalbe').innerHTML += html
+			document.querySelector('.btable').innerHTML += html
 		}
 	})
 }
