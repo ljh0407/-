@@ -1,0 +1,44 @@
+AWS : Amazon Web Sevices
+	1. RDS  
+
+	DB서버 : 아마존회사 IP : 포트번호
+	
+	2. AWS 회원가입 [ 카드 등록 ] 
+	3. 로그인
+	4. ****** 템플릿 : 프리티어
+	5. 
+		마스터이름 : admin[ 아무거나 ]
+		마스터암호 : 숨길수있는
+	6. [스토리지] 탭
+		스토리지 용량 : 20GB
+	6. [연결] 탭
+		퍼블릭 액세스 : 예
+		추가구성 : 포트번호 [3306]
+	7. [추가구성] 탭
+	**** 백업 : 자동 백업을 활성화 끄기 
+	7. 5~10분 생성중
+	8. RDS 접속할수 있는 ip 선정
+		vpc 보안그룹 :
+			인바운드규칙 [ 접속할수 있는 ip 선정 ] -> 인바이트 규칙 편집
+			1. 유형 : 모든 트래픽
+			2. 소스 : 0.0.0.0/0
+
+	앤드포인트 : ip주소
+	포트번호 : 3303 
+
+	- 1. 워크벤치에서 RDS 접속하는 방법
+		HOSTNAME : 엔드포인트
+		PORT : RDS
+		USERNAME : RDS 마스터이름
+		PASSWORD: RDS 마스터패스워드
+	- 2. DAO RDS 작성방법
+		con = DriverManager.getConnection("jdbc:mysql://RDS엔드포인트 : RDS 포트/DB명,RDS엔드포인트,PASSWORD
+					"root" , "1234")
+
+	AWS 요금확인
+	Billing 검색
+	
+	RDS 삭제
+		국가선택 --> RDS 서비스
+		
+		
