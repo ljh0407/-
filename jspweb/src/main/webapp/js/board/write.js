@@ -1,16 +1,8 @@
 
-// 썸머노트 실행
-$(document).ready(function() {
-  $('#summernote').summernote(
-	
-  
-		
-		
-	
-	
-);
-  
-  
+$('#summernote').summernote({
+  plasceholder : '내용 입력 해주세요',
+  minHeight: null,             // set minimum height of editor
+  maxHeight: 300             // set maximum height of editor
 });
 
 

@@ -48,6 +48,12 @@
 				
 			
 		</table>
+		
+		<div class="pagebox">
+		
+		
+		</div>
+		
 	</div>
 	
 	<!-- 부트스트랩 js -->

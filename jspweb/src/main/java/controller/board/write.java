@@ -57,7 +57,14 @@ public class write extends HttpServlet {
 		// 1비트 ( 0 , 1 ) --> 1바이트 ( 01011111 : 8비트 ) -> 1kb (1024b) -> 1mb (1024kb) ->
 		// 1G (1024mb)
 		// 1. 저장 경로 [ 프로젝트 저장 ]
-		String uploadpath = "C:\\Users\\504\\git\\-\\jspweb\\src\\main\\webapp\\upload\\";
+		//String uploadpath = "C:\\Users\\504\\git\\-\\jspweb\\src\\main\\webapp\\upload\\";
+		// 2. 저장 경로 [ 배포된 프로젝트의 (서버) 폴더 저장 ]
+			// 1. 현재 배포된 프로젝트의 경로 찾기
+		String uploadpath = request.getSession().getServletContext().getRealPath("/upload"); // 최상위 경로 jspweb/upload
+		System.out.println(uploadpath); 
+		
+		
+		// 2. multipart객체 생성
 		MultipartRequest multi = new MultipartRequest(request, // 1. 요청방식
 				uploadpath, // 2. 저장 경로
 				1024 * 1024 * 10, // 3. 용량 10MB [ 1024 : 1kb / 1024*1024 1mb / 1024*1024*1024 : 1G ]
