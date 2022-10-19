@@ -10,11 +10,11 @@
 
 	<h3>회원가입</h3>
 	<form>
-			아이디 : <input type="text" name="mid" id="mid" onclick="event1()">
-			비밀번호 : <input type="password" name="mpw" id="mpw" onclick="event2()">
-			이름 : <input type="text" name="mname" id="mname">
-			전화번호 : <input type="text" name="mphone" id="mphone">
-			이메일 : <input type="text" name="memail" id="memail" onclick="event3()">
+			아이디 : <input type="text" name="mid" id="mid" onkeyup="event1()" placeholder="영대/소문자/숫자"> <span class="midcheck"></span> <br>
+			비밀번호 : <input type="password" name="mpw" id="mpw" onkeyup="event2()"><span class="mpwcheck"></span><br>
+			이름 : <input type="text" name="mname" id="mname"><br>
+			전화번호 : <input type="text" name="mphone" id="mphone" onkeyup="event3()"><span class="mphonecheck"></span><br>
+			이메일 : <input type="text" name="memail" id="memail" onkeyup="event4()"><span class="memailcheck"></span><br>
 	
 	</form>
 		<button type="button" onclick="signup()"> 회원가입 </button>	
