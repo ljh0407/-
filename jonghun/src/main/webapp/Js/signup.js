@@ -1,7 +1,6 @@
 alert('연동')
 
 
-let col3 = document.querySelectorAll('.col3')
 
 function signup(){
    alert('버튼확인')
@@ -32,11 +31,11 @@ function signup(){
 
 function mevent1(){
 	let mid = document.querySelector('#mid').value
-	let midt = /^[a-zA-Z]{2,20}$/
+	let midt = /^[a-zA-Z]{2,20}$/ // 영대소문자 최소2글자 최대 20글자
 	
 	if( midt.test(mid)){
-		if( re === 'true'){col3[0].innerHTML = '사용중인아이디'}
-		else{ col3[0].innerHTML = '사용가능합니다'}
+		if( re === 'true'){'사용중인아이디'}
+		else{ '사용가능합니다'}
 	}
 	else{'아이디양식이 맞지않습니다'}
 }

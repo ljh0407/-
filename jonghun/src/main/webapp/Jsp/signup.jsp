@@ -9,33 +9,14 @@
 <body>
 
 	<h3>회원가입</h3>
-	<table>
-		<tr>
-			<td class="col1" > 아이디 * </td>	<!-- name:form에서 사용 , id:js에서 사용  -->
-			<td class="col2"> <input type="text" 		name="mid" 				id="mid" 				onkeyup="mevent1()"> </td>
-			<td class="col3"></td>
-		</tr>
-		<tr>
-			<td class="col1" > 비밀번호 * </td>	<!-- name:form에서 사용 , id:js에서 사용  -->
-			<td class="col2"> <input type="password" 		name="mpw" 				id="mpw" 			onkeyup="mevent2()"> </td>
-			<td class="col3"></td>
-		</tr>
-		<tr>
-			<td class="col1" > 이름  </td>	<!-- name:form에서 사용 , id:js에서 사용  -->
-			<td class="col2"> <input type="text" 		name="mid" 				id="mid" 				onkeyup="mevent3()"> </td>
-			<td class="col3"></td>
-		</tr>
-		<tr>
-			<td class="col1" > 전화번호  </td>	<!-- name:form에서 사용 , id:js에서 사용  -->
-			<td class="col2"> <input type="text" 		name="mid" 				id="mid" 				onkeyup="mevent4()"> </td>
-			<td class="col3"></td>
-		</tr>
-		<tr>
-			<td class="col1" > 이메일 </td>	<!-- name:form에서 사용 , id:js에서 사용  -->
-			<td class="col2"> <input type="text" 		name="mid" 				id="mid" 				onkeyup="mevent5()"> </td>
-			<td class="col3"></td>
-		</tr>
-	</table>
+	<form>
+			아이디 : <input type="text" name="mid" id="mid" onclick="event1()">
+			비밀번호 : <input type="password" name="mpw" id="mpw" onclick="event2()">
+			이름 : <input type="text" name="mname" id="mname">
+			전화번호 : <input type="text" name="mphone" id="mphone">
+			이메일 : <input type="text" name="memail" id="memail" onclick="event3()">
+	
+	</form>
 		<button type="button" onclick="signup()"> 회원가입 </button>	
 	
 		<!-- jQUERY 라이브러리 -->

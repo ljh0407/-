@@ -1,9 +1,33 @@
+// 전역변수 [ 상단에 둘것 ]
 
-let pageinfo = { // js 객체선언
-	listsize : 3, // 한페이지당 게시물 표시 개수
-	page : 1	// 현재 페이지 번호
+let pageinfo = { 	// js 객체선언
+	listsize : 5, 	// 한페이지당 게시물 표시 개수
+	page : 1,		// 현재 페이지 번호
+	key : '',		// 검색 키
+	keyword : ''	// 검색 키워드
+}
+// 5.게시물 표시 개수
+function blistsize(){
+	pageinfo.listsize = document.querySelector('.listsize').value
+	list(1)
+	
+	
 }
 
+
+// 4.검색처리
+function bsearch(){
+	
+	pageinfo.key = document.querySelector('.key').value 
+	pageinfo.keyword = document.querySelector('.keyword').value
+	
+	
+	console.log(pageinfo)
+	
+	list( 1 )
+		
+}
+// 1. 게시물 출력함수
 list(1) // js 열람시 메소드 1번 실행 
 function list(page){ // 함수 정의한다
 
@@ -58,10 +82,12 @@ function list(page){ // 함수 정의한다
 				
 			document.querySelector('.pagebox').innerHTML = pagehtml
 			
+			document.querySelector('.totalsize').innerHTML = boards.totalsize
+			
 		}
 	})
 }
-
+// 2.제목 클릭했을때 상세페이지 이동 함수
 function viewload( bno ){
 	$.ajax({
 		url : "http://localhost:8080/jspweb/board/viewload" , 
