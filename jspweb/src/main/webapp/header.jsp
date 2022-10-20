@@ -18,7 +18,7 @@
 		<div class="hd_top"><!-- 상단 헤더 -->
 			<div><!-- 로고 -->
 				<span class="hd_title"> 
-					<a href="/jspweb/index.jsp">로고</a> 
+					<a href="/jspweb/index.jsp">Ezen Shop</a> 
 				</span>
 			</div>
 			
@@ -56,7 +56,7 @@
 			<li><a href="#"> 긴팔 </a></li>
 			<li><a href="#"> 트레이닝복 </a></li>
 			<li><a href="#"> 악세사리 </a></li>
-			<li><a href="#"> 할인품목 </a></li>
+			<li><a href="/jspweb/board/chatting.jsp"> 채팅방 </a></li>
 			<li class="searchbox">
 				<span>
 				<input>
