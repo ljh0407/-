@@ -60,7 +60,7 @@
 }
 .name{ font: 12px; }
 
-.msgbox{ resize: none; } /* textarea 크기 변경불가 */
+.msgbox{ resize: none;  } /* textarea 크기 변경불가 */
 
 /* 드롭다운 메뉴 */
 .dropdown-menu{

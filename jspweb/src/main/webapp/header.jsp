@@ -57,7 +57,7 @@
 			<li><a href="#"> 반팔 </a></li>
 			<li><a href="#"> 긴팔 </a></li>
 			<li><a href="#"> 트레이닝복 </a></li>
-			<li><a href="#"> 악세사리 </a></li>
+			<li><a href="/jspweb/board/api.jsp"> 공공데이터 </a></li>
 			<li><a href="/jspweb/board/chatting.jsp"> 채팅방 </a></li>
 			<li class="searchbox">
 				<span>
@@ -78,6 +78,12 @@
 </body>
 </html>
 
+
+<!-- 
+	헤더파일 [ 모든 페이지에서 호출되는 파일 ]
+		경로 : 상대경로
+			/ : 최상위 경로 = localhost:8080
+ -->
 
 
 
