@@ -62,6 +62,40 @@ create table reply(
     constraint rmno_fk foreign key (mno) references member(mno) on delete cascade, -- 회원탈퇴시 댓글도 같이 삭제
     constraint rbno_fk foreign key (bno ) references board(bno) on delete cascade -- 게시물삭제시 댓글도 같이 삭제
 );
+
+drop table api;
+create table api(
+	api_no int auto_increment primary key, -- 평점 번호
+    대표전화 varchar(20),		-- 대표전화
+    평점 int 
+);
+
+/* 제품 카테고리 테이블 */
+
+create table pcategory(
+	pcno int auto_increment  ,  	-- 카테고리번호
+    pcname varchar(100) , 					-- 카테고리이름
+    constraint pcno_pk primary key (pcno)
+);
+
+drop table if exists product;
+create table product(
+	pno int auto_increment primary key , -- 제품번호
+    pname varchar(100), -- 제품명
+    pcoment varchar(1000), -- 제품설명
+	pprice int unsigned ,  -- 제품가격  +- 20억  unsigned ---> 0~40 억  (음수제거)
+	pdiscount float, -- 제품할인율 [소수점]
+    pactive tinyint , -- 제품상태 : 0 [준비중] , 1: 판매중 , 2: 재고없음 
+    pimg varchar(1000) , -- 대표이미지 경로
+    pdate datetime default now() , -- 등록날짜
+    pcno  int , -- 카테고리번호 제품 카테고리의 FK
+    constraint pcno_fk foreign key ( pcno ) references pcategory ( pcno ) /* pcategory[pk: pcno <-------------> product[fk:pcno] */
+);
+
+
+-- csv파일 ----> db 테이블 가져오기
+--  1. 해당 db 오른쪽 클릭 -> table data import wizard
+
 select * from reply;
 select r.rcontent , r.rdate , m.mid from reply r , member m where r.mno = m.mno and r.bno = 33;
 -- 댓글만 출력 
@@ -144,3 +178,6 @@ limit 0 , 3 ;
             필드명 like 김__	: 김으로 시작하는 세글자 
             필드명 like _김_	: 두번째 글자가 '김'인 세글자 
 */
+
+
+

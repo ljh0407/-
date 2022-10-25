@@ -19,7 +19,7 @@ public class BoardDao extends Dao {
 	public boolean write( String btitle , String bcontent , 
 					int mno , String bfile ) {
 		
-		String sql ="insert into board(btitle,bcontent,mno , bfile) "
+		String sql ="insert into board(btitle,bcontent, mno , bfile) "
 				+ "values( ? , ? , ? , ? )";
 		try {
 			ps = con.prepareStatement(sql);
