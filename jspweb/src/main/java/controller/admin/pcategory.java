@@ -28,7 +28,7 @@ public class pcategory extends HttpServlet {
 		System.out.println(pcname + "값");
 		
 		// 2. dao 처리
-		boolean result = new ProductDao().setpcategory(pcname); // 싱글톤객체 사용하지 않을경우 메소드 호출방식
+		boolean result = new ProductDao().setPcategory(pcname); // 싱글톤객체 사용하지 않을경우 메소드 호출방식
 		
 		// 3. 응답
 		response.getWriter().print(result);
@@ -38,7 +38,7 @@ public class pcategory extends HttpServlet {
 		// 요청
 		
 		// dao 처리
-		ArrayList<PcategoryDto> list = new ProductDao().getpcategory();
+		ArrayList<PcategoryDto> list = new ProductDao().getPcategory();
 		// 리스트 --> json 변환 [ JS ]
 		JSONArray array = new JSONArray();
 		for(PcategoryDto dto : list) {
