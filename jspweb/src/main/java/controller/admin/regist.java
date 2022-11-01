@@ -64,7 +64,7 @@ public class regist extends HttpServlet {
 						JSONObject object  = new JSONObject();
 						object.put("pno", list.get(i).getPno() );				
 						object.put("pname", list.get(i).getPname() );
-						object.put("pcomment", list.get(i).getPcoment() );		
+						object.put("pcomment", list.get(i).getPcomment() );		
 						object.put("pprice", list.get(i).getPprice() );
 						object.put("pdiscount", list.get(i).getPdiscount() );	
 						object.put("pactive", list.get(i).getPactive() );
@@ -86,7 +86,7 @@ public class regist extends HttpServlet {
 						JSONObject object  = new JSONObject();
 						object.put("pno", dto.getPno() );				
 						object.put("pname", dto.getPname() );
-						object.put("pcomment", dto.getPcoment() );		
+						object.put("pcomment", dto.getPcomment() );		
 						object.put("pprice", dto.getPprice() );
 						object.put("pdiscount", dto.getPdiscount() );	
 						object.put("pactive",dto.getPactive() );

@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+img{ width: 100% } /* 상위태그와 사이즈만큼 비율*/
+
+.infobox{ /* 상품정보 박스권 위쪽테두리 , 왼쪽여백 */
+	border-top: 1px black solid;
+	margin-left: 3%; 
+}
+
+.pname{
+	margin-top: 5%;
+	font-family: 'OTWelcomeBA';
+}
+
+.pcomment{ /* 제품설명 */
+	font-size: 9px;
+}
+.pricebox{ margin: 5% 0%; }
+.pdiscount{ /* 할인율 */
+	font-family: 'OTWelcomeBA';
+	color: red; font-size: 20px;
+	padding-right: 3%;
+}
+.pprice{ 
+	text-decoration: line-through; /* 중간 실선 */
+	color: #999999;
+	padding-right: 3%;
+}
+.psale{ /* 판매가 */
+	font-family: 'OTWelcomeBA';
+	font-size: 20px;
+}
+.into_t{
+	margin: 5% 0%;
+	font-size: 15px;
+}
+.select_t{ margin: 5% 0% ; }
+.amount_btn{ /* 수량 증가, 감소 버튼 */
+	display: block;
+	background-color: transparent; /* 투명색 */
+	font-size: 5px;
+	padding: 0px 8px;
+	border: 1px #999999 solid;
+}
+.cancel_btn{ /* 선택 옵션 제거 */
+	background-color: transparent;
+	font-size: 15px;
+	border: none;
+	padding: 3px;
+}
+.pointbox{ font-size: 8px; color: #999999;} /* 선택옵션 포인트 */
+
+.totalprice{ 			/* 선택된 옵션의 총 가격 */
+	text-align: right; 	/* 오른쪽배치 */
+	font-family: 'OTWelcomeBA'; font-size: 20px;
+} 
+/* 버튼 목록 안에 있는 버튼 꾸미기 */
+.btnbox{
+	margin: 7% 0%;
+	font-size: 15px;
+}
+.btnbox button{
+	background-color: white;
+	border: 1px #999999 solid; 	/* 테두리 */
+	width: 30%;					/* 가로사이즈[상위 태그의 사이즈내] */
+	padding: 20px 10px ; 		/* 버튼내 안쪽여백 */
+	margin-right: 2%;			/* 오른쪽 바깥여백 = 버튼들의 사이 간격 */
+}
+#btn1{ background-color: black; color: white;}
+#btn3{ color: red; }

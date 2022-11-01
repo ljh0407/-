@@ -9,7 +9,7 @@ public class StockDto {
    private int pstock ;		// 제품 재고
    
    
-public StockDto(int psno, String psize, int pno, int pstno, String pcolor, int pstock) {
+public StockDto(int psno, String psize,  int pstno, String pcolor, int pstock) {
 	super();
 	this.psno = psno;
 	this.psize = psize;

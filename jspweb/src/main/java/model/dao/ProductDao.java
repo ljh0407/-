@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import controller.board.list;
 import model.dto.PcategoryDto;
 import model.dto.ProductDto;
 import model.dto.StockDto;
@@ -41,7 +42,7 @@ public class ProductDao extends Dao{
 			String sql = "insert into product( pname , pcomment , pprice , pdiscount , pimg , pcno) values(?,?,?,?,?,?)";
 			try {
 				ps = con.prepareStatement(sql);
-				ps.setString( 1 , dto.getPname());	ps.setString( 2 , dto.getPcoment());
+				ps.setString( 1 , dto.getPname());	ps.setString( 2 , dto.getPcomment());
 				ps.setInt( 3 , dto.getPprice());	ps.setFloat( 4 , dto.getPdiscount());
 				ps.setString( 5 , dto.getPimg());	ps.setInt( 6 , dto.getPcno());
 				ps.executeUpdate(); return true;
@@ -111,7 +112,7 @@ public class ProductDao extends Dao{
 					+ "where pno = ?";
 			try {
 				ps = con.prepareStatement(sql);
-				ps.setString( 1 , dto.getPname());	ps.setString( 2 , dto.getPcoment());
+				ps.setString( 1 , dto.getPname());	ps.setString( 2 , dto.getPcomment());
 				ps.setInt( 3 , dto.getPprice());	ps.setFloat( 4 , dto.getPdiscount());
 				ps.setByte( 5 , dto.getPactive());	ps.setString( 6 , dto.getPimg());
 				ps.setInt( 7 , dto.getPcno());		ps.setInt( 8 , dto.getPno());
@@ -150,7 +151,23 @@ public class ProductDao extends Dao{
 		
 		// 9. 제품별 재고 출력
 		public ArrayList<StockDto> getstock( int pno ){
-			return null;
+			ArrayList<StockDto> list = new ArrayList<>();
+			
+			String sql = "select ps.psno , ps.psize , pst.pstno ,pst.pcolor , pst.stock "
+					+ " from productsize ps , productstock pst"
+					+ " where ps.psno = pst.psno = "+pno
+					+ " order by ps.psize desc";
+			try {
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				while(rs.next()) {
+					StockDto dto = new StockDto(
+							rs.getInt(1), rs.getString(2), rs.getInt(3),
+							rs.getString(4), rs.getInt(5));
+					list.add(dto);
+				}
+			} catch (Exception e) {System.out.println(e);}return list;
+			
 		}
 		
 }

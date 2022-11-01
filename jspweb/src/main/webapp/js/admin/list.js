@@ -53,7 +53,7 @@ function updatemodal( pno ){
 				
 						// 카테고리 호출 
 						$.ajax({
-							url : "/jspweb/board/pcategory" , 
+							url : "/jspweb/admin/pcategory" , 
 							type : "get" , 
 							success:function(re){
 								let json2 = JSON.parse(re)
@@ -132,5 +132,3 @@ function deleteprodcut( pno ){
 	원본 : <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
 	수정 : <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443" parseBodyMethods="GET,POST,PUT,DELETE"/>
  */
-
-
