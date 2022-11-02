@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<%@include file="header.jsp" %>
-		
-		<!-- 대문 [ 이미지 슬라이드 - 캐러셀 ] -->
+	<%@ include file="header.jsp" %>
+	
+	<!-- 대문 [ 이미지 슬라이드 - 캐러셀 ] -->
 	<div id="maincarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="1000" >
 												<!-- carousel-fade : 덮여씌우기	/ data-bs-interval = "밀리초"	  -->
 	  <div class="carousel-inner">	<!-- 이미지 삽입되는 구역 -->
@@ -49,9 +49,8 @@
 			<!-- 제품이 출력되는 구역 -->
 		</div>
 		
-		
 	</div>
-
-		<script type="text/javascript" src="/jspweb/js/index.js"></script>
+	
+	<script type="text/javascript" src="/jspweb/js/index.js"></script>
 </body>
 </html>
