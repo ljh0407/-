@@ -153,9 +153,9 @@ public class ProductDao extends Dao{
 		public ArrayList<StockDto> getstock( int pno ){
 			ArrayList<StockDto> list = new ArrayList<>();
 			
-			String sql = "select ps.psno , ps.psize , pst.pstno ,pst.pcolor , pst.stock "
+			String sql = "select ps.psno , ps.psize , pst.pstno ,pst.pcolor , pst.pstock "
 					+ " from productsize ps , productstock pst"
-					+ " where ps.psno = pst.psno = "+pno
+					+ " where ps.psno = pst.psno and ps.pno = "+pno
 					+ " order by ps.psize desc";
 			try {
 				ps = con.prepareStatement(sql);

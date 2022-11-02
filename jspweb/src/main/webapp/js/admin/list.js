@@ -101,7 +101,7 @@ function updateproduct(){
 				// 1. 모달닫기
 				document.querySelector(".modelclosebtn").click()
 				// 2. 새로고침
-				pagechage('list.jsp');
+				pagechange('list.jsp');
 			}else{ alert("수정실패")}
 		}
 	})
@@ -111,12 +111,13 @@ function updateproduct(){
 // 3. 삭제 처리 메소드 
 function deleteprodcut( pno ){
 	if( confirm("정말 삭제하시겠습니까?") ){ // 확인 버튼을 눌렀을때
+	alert(pno)
 		$.ajax({
 			url :"/jspweb/admin/regist" ,
 			data : { "pno" : pno } ,
 			type : "delete" ,  // 해당 서블릿주소 의 doDelete메소드과 통신
 			success: function( re ){ 
-				if( re ==='true' ){ alert('삭제성공'); pagechage('list.jsp'); }
+				if( re ==='true' ){ alert('삭제성공'); pagechange('list.jsp'); }
 					// pagechage() : dashboard.jsp내  dashboard.js가 포함되어 있기때문에 호출이 가능하다.   
 						// 현재 구조상 dashboard.jsp내 특정태그에 list.jsp 포함
 				else{ alert('삭제실패') }

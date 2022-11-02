@@ -84,7 +84,7 @@ let btnlike = document.querySelector('.btnlike');
 // 찜하기 버튼을 눌렀을때
 document.querySelector('.btnlike').addEventListener('click' , (e)=>{
 	// 1. 로그인 유무 판단 [ 1. ajax 통신해서 세션 유무 확인한다. 2. jsp에서 가져온다. ]
-	document.querySelector('.mid').value
+	let mid = document.querySelector('.mid').value
 	if( mid == 'null'){
 		alert('로그인후 가능한 기능입니다.')
 		return;

@@ -33,11 +33,11 @@ public class stock extends HttpServlet {
 		JSONArray array = new JSONArray();
 		for(StockDto dto : list) {
 			JSONObject object = new JSONObject();
-			object.put(list, dto.getPsno());
-			object.put(list, dto.getPsize());
-			object.put(list, dto.getPstno());
-			object.put(list, dto.getPcolor());
-			object.put(list, dto.getPstock());
+			object.put("psno", dto.getPsno());
+			object.put("psize", dto.getPsize());
+			object.put("pstno", dto.getPstno());
+			object.put("pcolor", dto.getPcolor());
+			object.put("pstock", dto.getPstock());
 			array.add(object);
 		}
 		

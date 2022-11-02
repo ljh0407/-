@@ -42,10 +42,10 @@ public class regist extends HttpServlet {
 		
 		int pcno = Integer.parseInt( multi.getParameter("pcno") );
 		
-		ProductDto dto = new ProductDto( 0 , pname, pcomment,pprice, pdiscount, (byte) 0 ,pimg, null, pcno );
+		ProductDto dto = new ProductDto( 0 , pname, pcomment, pprice, pdiscount, (byte) 0 , pimg, null, pcno );
 		
 		boolean result = new ProductDao().setProduct(dto);
-		response.getWriter().print(result);
+		response.getWriter().print(result); System.out.println("**"+result);
 	}
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -103,51 +103,64 @@ public class regist extends HttpServlet {
 	
 /////////////////////////////////////////// 3. 제품 수정 메소드 [ put 매핑 ]  ///////////////////////////////////////////////
 	
-protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-/* 첨부파일이 있을경우 [ 업로드 용 ] */
-MultipartRequest multi = new MultipartRequest(
-request, 
-request.getSession().getServletContext().getRealPath("/admin/pimg") , 
-1024*1024*10,
-"UTF-8", 
-new DefaultFileRenamePolicy() );
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* 첨부파일이 있을경우 [ 업로드 용 ] */
+		MultipartRequest multi = new MultipartRequest(
+				request, 
+				request.getSession().getServletContext().getRealPath("/admin/pimg") , 
+				1024*1024*10,
+				"UTF-8", 
+				new DefaultFileRenamePolicy() );
+		
+		int pno = Integer.parseInt( multi.getParameter("pno") );	// 수정할 대상 
+		byte pactive = Byte.parseByte(multi.getParameter("pactive")); // 제품상태
+		
+		String pname = multi.getParameter("pname");			
+		String pcomment = multi.getParameter("pcomment");	
+		int pprice = Integer.parseInt( multi.getParameter("pprice") ) ;		
+		float pdiscount = Float.parseFloat( multi.getParameter("pdiscount") );
+		String pimg = multi.getFilesystemName("pimg"); 
+		
+		int pcno = Integer.parseInt( multi.getParameter("pcno") );	// 수정할 대상 
+		
+		// 과제
+		// * 기존첨부파일 변경 여부 판단 
+		boolean bfilechange = true;
+		ProductDto olddto = new ProductDao().getpProduct( pno );
+		
+		 // *. 수정시 첨부파일 등록 없을경우 [ 기존첨부파일 호출  ]
+		if( pimg == null ) {  pimg = olddto.getPimg(); bfilechange =false; }
+		
+		ProductDto dto = new ProductDto( pno , pname, pcomment,pprice, pdiscount, pactive ,pimg, null, pcno );
 
-int pno = Integer.parseInt( multi.getParameter("pno") );	// 수정할 대상 
-byte pactive = Byte.parseByte(multi.getParameter("pactive")); // 제품상태
-
-String pname = multi.getParameter("pname");			
-String pcomment = multi.getParameter("pcomment");	
-int pprice = Integer.parseInt( multi.getParameter("pprice") ) ;		
-float pdiscount = Float.parseFloat( multi.getParameter("pdiscount") );
-String pimg = multi.getFilesystemName("pimg"); 
-
-int pcno = Integer.parseInt( multi.getParameter("pcno") );	// 수정할 대상 
-
-// 과제
-// * 기존첨부파일 변경 여부 판단 
-boolean bfilechange = true;
-ProductDto olddto = new ProductDao().getpProduct( pno );
-
-// *. 수정시 첨부파일 등록 없을경우 [ 기존첨부파일 호출  ]
-if( pimg == null ) {  pimg = olddto.getPimg(); bfilechange =false; }
-
-ProductDto dto = new ProductDto( pno , pname, pcomment,pprice, pdiscount, pactive ,pimg, null, pcno );
-
-boolean result = new ProductDao().updateProduct(dto);
-
-// 4.dao 처리 [ 업데이트 = 새로운 첨부파일 ]
-if( result && bfilechange ) {  deletefile( request.getSession() , olddto.getPimg() ); }
-
-response.getWriter().print(result);
-
-}
-
-//////////////////////////////////////////5. 수정 및 삭제시 첨부파일 제거 메소드 [ file delete ]  //////////////////////////////////////////////
-public void deletefile( HttpSession session ,  String pimg ) {
-String deletepath = session.getServletContext().getRealPath("/admin/pimg/"+ pimg );
-File file = new File( deletepath );
-if( file.exists() ) file.delete();	// 해당 경로에 존재하는 파일을 삭제
-}
+		boolean result = new ProductDao().updateProduct(dto);
+		
+		// 4.dao 처리 [ 업데이트 = 새로운 첨부파일 ]
+		if( result && bfilechange ) {  deletefile( request.getSession() , olddto.getPimg() ); }
+		
+		response.getWriter().print(result);
+		
+	}
+	
+	//////////////////////////////////////////  4. 제품 삭제 메소드 [ delete 매핑 ]  //////////////////////////////////////////////
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1.  삭제할 제품번호 요청 
+		int pno = Integer.parseInt( request.getParameter("pno") );
+		ProductDto olddto = new ProductDao().getpProduct( pno );
+		// 2. dao 
+		boolean result =  new ProductDao().deleteprodcut( pno );
+		if( result ) { deletefile( request.getSession() , olddto.getPimg() ); }
+		// 3. 응답 
+		response.getWriter().print(result);
+	}
+	
+	////////////////////////////////////////// 5. 수정 및 삭제시 첨부파일 제거 메소드 [ file delete ]  //////////////////////////////////////////////
+	public void deletefile( HttpSession session ,  String pimg ) {
+		String deletepath = session.getServletContext().getRealPath("/admin/pimg/"+ pimg );
+		File file = new File( deletepath );
+		if( file.exists() ) file.delete();	// 해당 경로에 존재하는 파일을 삭제
+	}
+	
 
 private static final long serialVersionUID = 1L;
 

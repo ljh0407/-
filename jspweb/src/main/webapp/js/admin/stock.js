@@ -47,7 +47,7 @@ pselect.addEventListener( 'click' , e => {
 getcategory()
 function getcategory(){
 	$.ajax({
-		url : "/jspweb/board/pcategory" , 
+		url : "/jspweb/admin/pcategory" , 
 		type : 'get',
 		success : function( re ){
 			let categorylist = JSON.parse( re ) // 선언
@@ -106,6 +106,7 @@ function getstock(){
 		data : { "pno" : rows[1].innerHTML  } ,
 		success : re => {
 			let json = JSON.parse( re )
+			console.log(json)
 			let html = '<tr><th> 사이즈 </th> <th> 색상 </th> <th> 재고 </th> <th> 비고 </th> </tr>';
 			// forEach( 반복변수명 => { 실행문 } ) : 인덱스 존재하는 객체에 한해 사용가능
 			json.forEach( s => {

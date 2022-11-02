@@ -3,6 +3,7 @@ function regist(){
 	/* 첨부파일이 포함되어 있을경우 */
 	let form = document.querySelector('form')
 	let formdata = new FormData( form )
+	console.log(formdata)
 	$.ajax({
 		url : "/jspweb/admin/regist" , 
 		data : formdata , 
@@ -11,7 +12,8 @@ function regist(){
 		processData : false ,
 		contentType : false ,
 		success: function( re ){ 
-			if( re == 'true' ){ alert("제품등록") }
+			alert(re)
+			if( re == 'true' ){ alert("제품등록")  } 
 			else{ alert("제품등록실패") }
 		}
 	})
