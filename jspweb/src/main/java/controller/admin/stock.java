@@ -47,7 +47,7 @@ public class stock extends HttpServlet {
 	}
 	
 	
-	// 재고 저장
+	// 재고 등록
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 요청
 		request.setCharacterEncoding("UTF-8");

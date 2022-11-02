@@ -80,6 +80,7 @@ document.querySelector('.sselect').addEventListener('change' , (e)=>{
 	print() // 리스트에 존재하는 객체를 출력한다. 
 })
 
+let btnlike = document.querySelector('.btnlike');
 // 찜하기 버튼을 눌렀을때
 document.querySelector('.btnlike').addEventListener('click' , (e)=>{
 	// 1. 로그인 유무 판단 [ 1. ajax 통신해서 세션 유무 확인한다. 2. jsp에서 가져온다. ]
@@ -89,7 +90,23 @@ document.querySelector('.btnlike').addEventListener('click' , (e)=>{
 		return;
 	}
 	// 2. 찜하기 등록 혹은 삭제 
-	
+	$.ajax({
+		url : "/jspweb/product/plike",
+		type : "post",
+		data : {"pno" : pno },
+		success : re => { 
+			if( re == "1"){
+				alert('찜하기 취소')
+				btnlike.innerHTML = "찜하기 ♡"
+			}else if( re == "2"){
+				alert('찜하기 성공')
+				btnlike.innerHTML = "찜하기 ♥"
+			}else{
+				alert('오류')
+			}
+		}
+			
+	})
 })
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // js 열람시 최초로 함수 1번 실행 
