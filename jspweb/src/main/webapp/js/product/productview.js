@@ -108,6 +108,30 @@ document.querySelector('.btnlike').addEventListener('click' , (e)=>{
 			
 	})
 })
+//
+// 장바구니 버튼을 눌렀을때
+document.querySelector('.btncart').addEventListener('click' , (e)=>{
+	
+	// 1. 만약에 선택한 제품이 없으면
+	if(productlist.length == 0 ){alert('최소1개 이상 옵션을 선택해주세요'); return;}
+
+	// 2. 로그인 유무 
+	if(document.querySelector('.mid').value == 'null' ){alert('로그인후 가능한 기능입니다.'); return;}
+
+	// 3. 선택된 제품들의 옵션들을 전송
+	
+	$.ajax({ // 전송타입 : 문자열객체 형식  // 첨부파일 
+		url : '/jspweb/product/cart',
+		type : 'post',
+		data : { 'data' : JSON.stringify(productlist) , "pno" : pno } , 
+				// JSON.stringify(객체) : 객체 타입 --> 문자열타입
+		success : re =>{
+			alert(re) 
+		}
+	})
+	
+	
+})
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // js 열람시 최초로 함수 1번 실행 
 

@@ -104,4 +104,228 @@ create table productstock(
     constraint pstno_pk primary key( pstno ) , 
     constraint psno_fk	foreign key( psno ) references productsize( psno )
 );
+-- 장바구니 db
+drop table if exists cart;
+create table cart(
+	cartno int auto_increment 	,	-- 장바구니 번호
+    amount int	,					-- 옵션 수량
+    pstno int	,					-- 제품재고 정보
+    mno	int	,						-- 회원번호
+    constraint cart_pk primary key( cartno ) , 
+    constraint cart_pstno_fk foreign key ( pstno ) references productstock( pstno ),
+    constraint cart_mno_fk foreign key ( mno ) references member( mno )
+);
 
+
+-- 1. 재고번호 찾기 [ join ]
+select * from productstock;	-- 재고 테이블 검색
+select * from productstock where pno = 10; 	-- 재고 pno 없다.[ 오류 ]
+select * from productsize where pno = 10;	-- 사이즈 pno 있다.
+select * from productsize where pno = 10 and psize = 'XL';
+select * from productsize ps , productstock pst where ps.psno = pst.psno; -- 두개 이상 테이블 검색 
+
+select pstno 
+from productsize ps , productstock pst 
+where ps.psno = pst.psno and pno = 10 and psize = 'XL' and pcolor = '오렌지';
+-- -------------------------------------------------------------------------- --
+-- 1. 재고번호 찾기  서브쿼리 [ SQL 안에 select ]
+select psno from productsize where pno = 10 and psize = 'XL';
+
+select pstno
+from productstock pst , 
+(select psno from productsize where pno = 10 and psize = 'XL') sub 
+where pst.psno = sub.psno and pcolor = '오렌지';
+
+-- ------------------------------------------------------------------------- --
+insert into cart( amount , pstno , mno )
+values ( 
+	1 ,
+    (select pstno
+	from productstock pst , 
+		(select psno from productsize where pno = 10 and psize = 'XL') sub 
+	where pst.psno = sub.psno and pcolor = '오렌지') ,
+    3
+);
+
+
+
+
+
+-- ------------------------------------------------------------------------- --
+-- 로그인 된 회원의 장바구니 정보 모두 호출 [ mno -> 카트번호 , 재고번호 , 제품명, 제품사진 , 가격 , 할인율 , 선택한옵션색상/사이즈/수량 ]
+-- 예시 3번회원
+
+select * from cart where mno = 3; -- 회원 장바구니
+select * from cart c , productstock pst where c.pstno = pst.pstno; -- 카트 + 재고
+
+select * from cart c , productstock pst , productsize ps 
+where c.pstno = pst.pstno and pst.psno = ps.psno; 		-- 카트 + 재고 + 사이즈 
+
+select * from cart c , productstock pst , productsize ps , product p
+where c.pstno = pst.pstno and pst.psno = ps.psno and ps.pno = p.pno;	-- 카트 + 재고 + 사이즈 + 제품 
+--      	fk = pk		and       fk   =  pk    and  fk = pk
+
+select 
+	c.cartno 장바구니번호 ,  c.pstno 재고번호 , 
+    p.pname  제품명 , p.pimg 제품사진 , 
+    p.pprice  가격 ,   p.pdiscount 할인율 ,
+	pst.pcolor 색상 , ps.psize 사이즈 ,
+    c.amount 구매예정수량
+from 
+	cart c , 
+    productstock pst , 
+    productsize ps , 
+    product p
+where c.pstno = pst.pstno 
+	and pst.psno = ps.psno 
+    and ps.pno = p.pno;
+    
+-- JOIN [ 관계[pf-fk]있을경우에 2개 이상 테이블의 동일한 데이터  ]
+	-- 1. 테이블명 inner JOIN 테이블명 on pk필드 = fk필드 
+select 
+	c.cartno 장바구니번호 ,  c.pstno 재고번호 , 
+    p.pname  제품명 , p.pimg 제품사진 , 
+    p.pprice  가격 ,   p.pdiscount 할인율 ,
+	pst.pcolor 색상 , ps.psize 사이즈 ,
+    c.amount 구매예정수량
+from 
+	cart c inner join
+    productstock pst inner join
+    productsize ps inner join
+    product p
+on  c.pstno = pst.pstno 
+	and pst.psno = ps.psno  
+    and ps.pno = p.pno;
+
+    -- 2. 테이블명 natural join 테이블명 [ 암묵적으로 pk와fk를 조건으로 사용 ]
+select 
+	c.cartno 장바구니번호 ,  c.pstno 재고번호 , 
+    p.pname  제품명 , p.pimg 제품사진 , 
+    p.pprice  가격 ,   p.pdiscount 할인율 ,
+	pst.pcolor 색상 , ps.psize 사이즈 ,
+    c.amount 구매예정수량
+from 
+	cart c natural join
+    productstock pst natural join
+    productsize ps natural join
+    product p;
+    
+-- 
+select 
+	c.cartno ,  c.pstno , 
+    p.pname , p.pimg  , 
+    p.pprice   ,   p.pdiscount  ,
+	pst.pcolor  , ps.psize  ,
+    c.amount 
+from 
+	cart c natural join
+    productstock pst natural join
+    productsize ps natural join
+    product p
+where
+	c.mno = 3;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select * from reply;
+select r.rcontent , r.rdate , m.mid from reply r , member m where r.mno = m.mno and r.bno = 33;
+-- 댓글만 출력 
+select * from reply where rindex = 0;
+-- 1번 댓글의 답글만 출력 
+select * from reply where rindex = 1;
+-- 해당 게시물의 댓글만 출력 			[ 33번 게시물의 댓글만 출력 ]
+select r.rcontent , r.rdate , m.mid , r.rno
+from reply r , member m 
+where r.mno = m.mno and r.bno = 33 and r.rindex = 0 
+order by r.rdate desc;
+-- 해당 게시물의 1번 댓글의 답글만 출력 	[ 33번 게시물의 1번 댓글의 답글 출력  ]
+select r.rcontent , r.rdate , m.mid from reply r , member m where r.mno = m.mno and r.bno = 33 and r.rindex = 1;
+
+
+
+
+
+
+
+-- 1. 한개 테이블 검색 
+select * from board;
+-- 2. 두개 테이블 검색  [ 1번테이블 레코드수 x 2번테이블 레코드수 ]
+select * from member , board;
+-- 3. 조건 [ pk-fk 일치 한 경우만 표시 ]
+select * from member , board where member.mno = board.mno;
+-- 4. 표시할 필드 선택 
+select b.bno , b.btitle , b.bcontent , b.bfile , b.bdate , b.bview , b.cno , b.mno , m.mid
+from member m , board b where m.mno = b.mno;
+-- 5. 모든 글출력 
+select b.* , m.mid from member m , board b where m.mno = b.mno;
+-- 5. 개별 글출력 
+select b.* , m.mid from member m , board b where m.mno = b.mno and bno = 1; -- 게시물번호 
+
+
+
+-- 페이징처리 테스트 문법
+-- 1. 모든 게시물 수 [ count(*) : 레코드수 = 게시물수 ] 
+select count(*) from board;
+-- 2. 검색 결과에서 limit 이용한 개수 제한 [ limit 시작점 , 개수 ] 
+select * from board limit 0 , 3;
+-- 3. 정렬 [ 작성일 기준으로 정렬 desc:내림차순 / asc : 오름차순   ( 날짜 최신일수록 크다. ) ]
+select * from board order by bdate desc;
+-- 
+select * from board order by bdate desc limit 0 , 3 ; -- 최신글 3개 	[ 1페이지 ] 
+select * from board order by bdate desc limit 3 , 3 ; -- 최신글 3개 	[ 2페이지 ] 
+select * from board order by bdate desc limit 6 , 3 ; -- 최신글 3개 	[ 3페이지 ] 
+select * from board order by bdate desc limit 9 , 3 ; -- 최신글 3개 	[ 4페이지 ] 
+-- 앞전 코드 + 정렬 
+select b.* , m.mid from member m , board b where m.mno = b.mno order by b.bdate desc;
+-- 앞전 코드 + 정렬 + 출력제한
+select b.* , m.mid from member m , board b where m.mno = b.mno order by b.bdate desc limit 0 , 3 ;
+
+-- 검색[ 조건 추가 ]	like연산자  			필드 = 데이터  (같다)  		필드 like 데이터  ( 포함된 )
+select count(*) from board b;-- 전체 게시물 수 
+select count(*) from board b where b.btitle = 'qqqqq'; -- 제목 검색
+select count(*) from board b where b.btitle like '%q%'; -- 제목 포함된 검색
+-- 전체 게시물 수 
+select count(*) from board b;
+select count(*) from member m , board b where m.mno = b.mno;
+-- 검색 된 게시물수 
+select count(*) from member m , board b where m.mno = b.mno and "+key+" like '%"+keyword+"%';
+-- 전체 게시물 
+select b.* , m.mid from member m , board b where m.mno = b.mno order by b.bdate desc limit 0 , 3 ;
+-- 검색된 게시물 
+select b.* , m.mid 
+from member m , board b 
+where m.mno = b.mno and "+key+" like '%"+keyword+"%'
+order by b.bdate desc 
+limit 0 , 3 ;
+/*
+	like
+			% : 모든 글자 대응 
+			필드명 like %김	: 김으로 끝나는 문자 
+			필드명 like 김% 	: 김으로 시작하는 문자
+			필드명 like %김% 	: 김이 포함된 문자 
+            
+            _ : _ 개수만큼 글자 대응
+            필드명 like _김	: 김으로 끝나는 두글자 
+            필드명 like 김__	: 김으로 시작하는 세글자 
+            필드명 like _김_	: 두번째 글자가 '김'인 세글자 
+*/

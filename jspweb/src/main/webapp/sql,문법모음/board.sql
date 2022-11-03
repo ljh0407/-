@@ -60,8 +60,103 @@ create table reply(
     bno			int not null,-- 게시물번호 
     constraint rno_pk primary key(rno) ,
     constraint rmno_fk foreign key (mno) references member(mno) on delete cascade, -- 회원탈퇴시 댓글도 같이 삭제
-    constraint rbno_fk foreign key (bno ) references board(bno) on delete cascade -- 게시물삭제시 댓글도 같이 삭제
+    constraint rbno_fk foreign key (bno) references board(bno) on delete cascade -- 게시물삭제시 댓글도 같이 삭제
 );
+
+drop table if exists api;
+create table api(
+	api_no int auto_increment primary key, -- 평점 번호
+    대표전화 varchar(20),		-- 대표전화
+    평점 int 
+);
+
+/* 제품 카테고리 테이블 */
+drop table if exists pcategory;
+create table pcategory(
+	pcno int auto_increment  ,  			-- 카테고리번호
+    pcname varchar(100) , 					-- 카테고리이름
+    constraint pcno_pk primary key (pcno)
+);
+
+
+select * from pcategory;
+drop table if exists product;
+create table product(
+	pno int auto_increment  , -- 제품번호
+    pname varchar(100), -- 제품명
+    pcomment varchar(1000), -- 제품설명
+	pprice int unsigned ,  -- 제품가격  +- 20억  unsigned ---> 0~40 억  (음수제거)
+	pdiscount float, -- 제품할인율 [소수점]
+    pactive tinyint default 0 , -- 제품상태 : 0 [준비중] , 1: 판매중 , 2: 재고없음 
+    pimg varchar(1000) , -- 대표이미지 경로
+    pdate datetime default now() , -- 등록날짜
+    pcno  int not null , -- 카테고리번호 제품 카테고리의 FK
+	constraint pno_pk primary key ( pno ),
+    constraint pcno_fk foreign key ( pcno ) references pcategory( pcno ) /* pcategory[pk:pcno]  <-------->  product[fk:pcno] */
+);
+
+select * from product;
+
+
+/* 제품별 사이즈 테이블 : 제품별[pno] 사이즈[psize] */
+drop table if exists productsize;
+create table productsize(
+	psno int auto_increment ,
+    psize varchar(100) ,
+    pno int ,
+    constraint psno_pk primary key(psno),
+    constraint pno_fk foreign key (pno) references product (pno)
+);
+
+/* 사이즈별 색상재고 테이블 : 사이즈별[psno] 옵션2[pcolor] 재고[pstock]저장 */
+drop table if exists productstock;
+create table productstock(
+	pstno int auto_increment ,
+    pcolor varchar(100),
+    pstock int,
+    psno int,
+    constraint pstno_pk primary key (pstno),
+    constraint psno_fk foreign key (psno) references productsize( psno )
+);
+
+drop table if exists plike; -- sns 친구추가 좋아요 기능이랑 똑같음
+create table plike(
+	plikeno int auto_increment ,
+    mno int ,
+    pno int,
+    constraint plike primary key (plikeno),
+    constraint plike_mno_pk foreign key (mno) references member(mno),
+    constraint plike_pno_pk foreign key (pno) references product (pno)
+);
+
+-- 장바구니 db
+create table cart(
+	cartno int auto_increment ,	-- 장바구니 번호 
+    amount int,					-- 옵션수량
+    pstno  int,					-- 제품재고 정보
+    mno int,  					-- 회원번호
+    constraint cart_pk primary key(cartno) ,
+    constraint pstno_fk foreign key(pstno) references productstock( pstno ),
+    constraint car_mno_fk foreign key (mno) references member (mno)
+);
+
+
+/* 사이즈 등록 sql */
+insert into productsize( psize , pno ) values (?,?);
+-- 색상 재고 등록 sql 
+insert into productstock( pcolor , pstock , psno ) values(?,?,?);
+
+-- 제품별 재고 출력 = 두테이블[조인] 검색해서 원하는 필드만 추출
+select ps.psno , ps.psize , pst.pstno ,pst.pcolor , pst.stock
+from productsize ps , productstock pst		-- 별칭 => productsize = ps ,  productstock = pst
+where ps.psno = pst.psno =?  	-- pk == fk 교집합
+order by ps.psize desc;			-- 정렬
+
+update product set pname = '하하' , pcoment= 'sdf' , pprice= 1000 , pdiscount= 0.1 , pactive= 1   , pcno= 1
+					where pno = 1;
+-- csv파일 ----> db 테이블 가져오기
+--  1. 해당 db 오른쪽 클릭 -> table data import wizard
+
 select * from reply;
 select r.rcontent , r.rdate , m.mid from reply r , member m where r.mno = m.mno and r.bno = 33;
 -- 댓글만 출력 
@@ -147,9 +242,3 @@ limit 0 , 3 ;
 
 
 
-drop table api;
-create table api(
-	api_no int auto_increment primary key, -- 평점 번호
-    대표전화 varchar(20),		-- 대표전화
-    평점 int 
-);

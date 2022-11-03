@@ -31,7 +31,7 @@ public class BoardDao extends Dao {
 		}catch (Exception e) {System.out.println( e );}
 		return false;
 	}
-	// 2. 글출력  놓침
+	// 2. 글출력 
 	public ArrayList< BoardDto > getlist( int startrow , int listsize ,String key, String keyword ) {
 		ArrayList< BoardDto > list = new ArrayList<>();
 		String sql = "";
