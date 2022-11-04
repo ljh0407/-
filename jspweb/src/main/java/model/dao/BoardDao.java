@@ -163,9 +163,9 @@ public class BoardDao extends Dao {
 				ps.setInt(3, bno);
 				ps.executeUpdate(); return true;
 			} catch (Exception e) {System.out.println(e);}return false;
-			
-			
 		}
+			
+			
 	
 	// 9-2 대댓글 작성	
 		public boolean rrwrite( String rcontent , int mno , int bno , int rindex ) {

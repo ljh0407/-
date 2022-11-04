@@ -34,7 +34,7 @@ function list(page){ // 함수 정의한다
 	pageinfo.page = page;  // 객체 정보 변경
 
 	$.ajax({
-		url : "http://localhost:8080/jspweb/baord/list" , 
+		url : "/jspweb/baord/list" , 
 		data : pageinfo,
 		success : function( re ){
 			let boards = JSON.parse(re)

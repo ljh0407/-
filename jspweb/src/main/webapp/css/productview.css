@@ -21,7 +21,7 @@ img{ width: 100% } /* 상위태그와 사이즈만큼 비율*/
 	color: red; font-size: 20px;
 	padding-right: 3%;
 }
-.pprice{ 
+.pprice{ /* 원가 */
 	text-decoration: line-through; /* 중간 실선 */
 	color: #999999;
 	padding-right: 3%;
@@ -33,6 +33,11 @@ img{ width: 100% } /* 상위태그와 사이즈만큼 비율*/
 .into_t{
 	margin: 5% 0%;
 	font-size: 15px;
+}
+select{
+	width: 60%;
+	height: 30px;
+	border: 1px solid #999999;
 }
 .select_t{ margin: 5% 0% ; }
 .amount_btn{ /* 수량 증가, 감소 버튼 */
@@ -46,7 +51,7 @@ img{ width: 100% } /* 상위태그와 사이즈만큼 비율*/
 	background-color: transparent;
 	font-size: 15px;
 	border: none;
-	padding: 3px;
+	padding: 5px;
 }
 .pointbox{ font-size: 8px; color: #999999;} /* 선택옵션 포인트 */
 
@@ -68,3 +73,6 @@ img{ width: 100% } /* 상위태그와 사이즈만큼 비율*/
 }
 #btn1{ background-color: black; color: white;}
 #btn3{ color: red; }
+
+
+

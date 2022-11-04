@@ -126,7 +126,15 @@ document.querySelector('.btncart').addEventListener('click' , (e)=>{
 		data : { 'data' : JSON.stringify(productlist) , "pno" : pno } , 
 				// JSON.stringify(객체) : 객체 타입 --> 문자열타입
 		success : re =>{
-			alert(re) 
+			
+			if( re == 'true'){
+				productlist = [ ] // 배열 초기화
+				if(confirm('장바구니페이지로 이동할까요?') ){
+					location.href='cart.jsp';
+				}
+			}else{
+				alert('장바구니 담기 실패');
+			} 
 		}
 	})
 	

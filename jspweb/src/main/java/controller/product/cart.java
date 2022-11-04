@@ -1,6 +1,8 @@
 package controller.product;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +15,7 @@ import org.json.simple.parser.JSONParser;
 
 import model.dao.MemberDao;
 import model.dao.ProductDao;
+import model.dto.CartDto;
 
 /**
  * Servlet implementation class cart
@@ -44,9 +47,9 @@ public class cart extends HttpServlet {
 			String psize = (String)object.get("psize"); System.out.println(psize);
 			int amount = Integer.parseInt(String.valueOf(object.get("amount") )) ;	System.out.println(amount);
 			String pcolor = (String)object.get("pcolor");	System.out.println(pcolor);
-		//	boolean result = new ProductDao().setcart(pno , psize , amount , pcolor , mno );		
+			boolean result = new ProductDao().setcart(pno , psize , amount , pcolor , mno );		
 				// 응답 [ 만약에
-		//	if(result == false) {response.getWriter().print(result); return;}
+			if(result == false) {response.getWriter().print(result); return;}
 		}
 		
 		}catch (Exception e) {System.out.println("json으로 변환 실패 :"+e);}
@@ -55,6 +58,33 @@ public class cart extends HttpServlet {
 		// 응답
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().print("true"); // 옵션들을 모두 저장했을경우
+	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// 요청
+		int mno = MemberDao.getInstance().getMno((String)request.getSession().getAttribute("mid") ) ;
+		// db처리
+		ArrayList<CartDto> list = new ProductDao().getCart(mno);
+		
+		JSONArray array = new JSONArray();
+		// 형변환
+		for( CartDto dto : list) {
+			JSONObject object = new JSONObject();
+			object.put("cartno", dto.getCartno());
+			object.put("pstno", dto.getPstno());
+			object.put("pname", dto.getPname());
+			object.put("pimg", dto.getPimg());
+			object.put("pprice", dto.getPprice());
+			object.put("pdiscount", dto.getPdiscount());
+			object.put("pcolor", dto.getPcolor());
+			object.put("psize", dto.getPsize());
+			object.put("amount", dto.getAmount());
+			array.add(object);
+			System.out.println("장바구니 : "+list);
+		}
+		// 응답
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(array);
 	}
 	private static final long serialVersionUID = 1L;
        
@@ -69,10 +99,6 @@ public class cart extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
